@@ -2,9 +2,6 @@
   "version": 2,
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/$1" },
-    { "src": "/access", "dest": "/public/access.html" },
-    { "src": "/goodbye", "dest": "/public/goodbye.html" },
-    { "src": "/", "dest": "/public/index.html" },
     { "src": "/(.*)", "dest": "/public/$1" }
   ]
 }
