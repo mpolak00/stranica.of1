@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="color-scheme" content="light dark" />
+    <title>GLŌW - Exclusive Members Area</title>
+    <script>
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    </script>
+    <script>
+      !function (w, d, t) {
+        w.TiktokAnalyticsObject = t;
+        var ttq = w[t] = w[t] || [];
+        ttq.methods = ["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"];
+        ttq.setAndDefer = function(target, method) {
+          target[method] = function() {
+            target.push([method].concat(Array.prototype.slice.call(arguments, 0)));
+          };
+        };
+        for (var i = 0; i < ttq.methods.length; i += 1) ttq.setAndDefer(ttq, ttq.methods[i]);
+        ttq.instance = function(id) {
+          var instance = ttq._i[id] || [];
+          for (var j = 0; j < ttq.methods.length; j += 1) ttq.setAndDefer(instance, ttq.methods[j]);
+          return instance;
+        };
+        ttq.load = function(id, opts) {
+          var src = "https://analytics.tiktok.com/i18n/pixel/events.js";
+          ttq._i = ttq._i || {};
+          ttq._i[id] = [];
+          ttq._i[id]._u = src;
+          ttq._t = ttq._t || {};
+          ttq._t[id] = +new Date();
+          ttq._o = ttq._o || {};
+          ttq._o[id] = opts || {};
+          var script = d.createElement("script");
+          script.type = "text/javascript";
+          script.async = !0;
+          script.src = src + "?sdkid=" + id + "&lib=" + t;
+          var first = d.getElementsByTagName("script")[0];
+          first.parentNode.insertBefore(script, first);
+        };
+      }(window, document, "ttq");
+    </script>
+    <style>
+      :root {
+        --bg:#0b0f14;
+        --card:rgba(255,255,255,.06);
+        --card2:rgba(255,255,255,.1);
+        --bd:rgba(255,255,255,.12);
+        --tx:rgba(255,255,255,.92);
+        --mut:rgba(255,255,255,.68);
+        --faint:rgba(255,255,255,.5);
+        --acc:#b7ffda;
+        --acc2:#86a9ff;
+        --acc3:#ff89c8;
+        --sh:0 20px 70px rgba(0,0,0,.55);
+        --ring:0 0 0 6px rgba(183,255,218,.16);
+        --r:18px;
+        --r2:26px
+      }
+      [data-theme=light] {
+        --bg:#f7fafc;
+        --card:rgba(0,0,0,.04);
+        --card2:rgba(0,0,0,.06);
+        --bd:rgba(0,0,0,.12);
+        --tx:rgba(5,10,18,.9);
+        --mut:rgba(5,10,18,.65);
+        --faint:rgba(5,10,18,.5);
+        --acc:#00c389;
+        --acc2:#3e67ff;
+        --acc3:#ff2f93;
+        --sh:0 20px 70px rgba(20,30,44,.18);
+        --ring:0 0 0 6px rgba(0,195,137,.12)
+      }
+      * { box-sizing: border-box; }
+      html, body { min-height: 100%; }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+        background:
+          radial-gradient(1100px 800px at 15% 15%, rgba(134,169,255,.22), transparent 60%),
+          radial-gradient(900px 650px at 80% 25%, rgba(255,137,200,.16), transparent 55%),
+          radial-gradient(1100px 900px at 55% 80%, rgba(183,255,218,.12), transparent 58%),
+          var(--bg);
+        color: var(--tx);
+        letter-spacing: -.01em;
+      }
+      a { color: inherit; text-decoration: none; }
+      button { font: inherit; }
+      .shell {
+        width: min(1120px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+      .page { padding: 40px 0 110px; }
+      .hero {
+        border: 1px solid var(--bd);
+        background: color-mix(in oklab, var(--card) 82%, transparent);
+        border-radius: var(--r2);
+        box-shadow: var(--sh);
+        padding: 28px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        background:
+          radial-gradient(900px 420px at 18% 18%, rgba(183,255,218,.18), transparent 60%),
+          radial-gradient(700px 300px at 82% 25%, rgba(255,137,200,.14), transparent 60%);
+        pointer-events: none;
+      }
+      .hero > * { position: relative; }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--bd);
+        background: linear-gradient(180deg, color-mix(in oklab, var(--card) 70%, transparent), transparent);
+        color: var(--mut);
+        font-size: 13px;
+      }
+      .pill-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--acc3);
+        box-shadow: 0 0 0 6px rgba(255,137,200,.14);
+      }
+      h1 {
+        margin: 16px 0 10px;
+        font-size: clamp(34px, 5vw, 56px);
+        line-height: 1.02;
+        letter-spacing: -.04em;
+      }
+      .sub {
+        margin: 0;
+        font-size: 16px;
+        color: var(--mut);
+        line-height: 1.5;
+      }
+      .locked { margin-top: 20px; }
+      .section-title {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 16px;
+        margin: 0 0 14px;
+      }
+      .section-title h2 {
+        margin: 0;
+        font-size: 18px;
+        letter-spacing: -.02em;
+      }
+      .section-title p {
+        margin: 0;
+        color: var(--mut);
+        font-size: 13px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+      @media (min-width: 980px) {
+        .grid { grid-template-columns: repeat(3, 1fr); }
+      }
+      .preview-card {
+        position: relative;
+        border: 1px solid var(--bd);
+        border-radius: var(--r2);
+        overflow: hidden;
+        background: color-mix(in oklab, var(--card) 85%, transparent);
+        box-shadow: var(--sh);
+        min-height: 220px;
+      }
+      .thumb {
+        position: absolute;
+        inset: 0;
+        filter: blur(10px) saturate(.45) brightness(.88);
+        transform: scale(1.08);
+        transition: filter .2s ease, transform .2s ease;
+      }
+      .preview-card:hover .thumb {
+        filter: blur(6px) saturate(.7) brightness(.95);
+        transform: scale(1.03);
+      }
+      .thumb-1 { background: linear-gradient(135deg, #e8a0b0, #c4687c); }
+      .thumb-2 { background: linear-gradient(135deg, #d4a0c0, #b06890); }
+      .thumb-3 { background: linear-gradient(135deg, #f0b8c4, #d07888); }
+      .thumb-4 { background: linear-gradient(135deg, #c8a0d4, #9870a8); }
+      .thumb-5 { background: linear-gradient(135deg, #e8b0a8, #c47870); }
+      .thumb-6 { background: linear-gradient(135deg, #d8b8e0, #a888b8); }
+      .overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+        color: rgba(255,255,255,.96);
+        text-align: center;
+        background: linear-gradient(180deg, rgba(11,15,20,.08), rgba(11,15,20,.34));
+      }
+      .overlay span {
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: .04em;
+        text-transform: uppercase;
+      }
+      .lock-icon { width: 22px; height: 22px; }
+      .conversion {
+        display: grid;
+        place-items: center;
+        gap: 14px;
+        text-align: center;
+        margin-top: 22px;
+      }
+      .urgency {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--mut);
+        font-size: 14px;
+      }
+      .urgency b { color: var(--tx); }
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 50px;
+        padding: 14px 22px;
+        border-radius: 999px;
+        border: none;
+        background: linear-gradient(135deg, var(--acc), var(--acc2));
+        color: #061019;
+        font-weight: 820;
+        font-size: 15px;
+        box-shadow: 0 18px 55px rgba(134,169,255,.22);
+        cursor: pointer;
+        transition: transform .14s ease, filter .14s ease;
+      }
+      [data-theme=light] .cta { color: #fff; }
+      .cta:hover {
+        transform: translateY(-1px);
+        filter: brightness(1.03);
+      }
+      .cta:focus-visible,
+      .dismiss:focus-visible,
+      .sticky-button:focus-visible {
+        outline: none;
+        box-shadow: var(--ring);
+      }
+      .popup-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 90;
+        display: grid;
+        place-items: center;
+        padding: 18px;
+        background: rgba(0,0,0,.52);
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity .22s ease, visibility .22s ease;
+      }
+      [data-theme=light] .popup-overlay {
+        background: rgba(5,10,18,.22);
+      }
+      .popup-overlay.visible {
+        visibility: visible;
+        opacity: 1;
+      }
+      .popup-sheet {
+        width: min(460px, 100%);
+        border-radius: var(--r2);
+        border: 1px solid var(--bd);
+        background: color-mix(in oklab, var(--bg) 84%, transparent);
+        box-shadow: var(--sh);
+        overflow: hidden;
+        transform: translateY(16px) scale(.96);
+        transition: transform .22s ease;
+      }
+      .popup-overlay.visible .popup-sheet { transform: translateY(0) scale(1); }
+      .popup-inner { padding: 22px; }
+      .popup-title {
+        margin: 14px 0 8px;
+        font-size: 26px;
+        letter-spacing: -.03em;
+      }
+      .popup-text {
+        margin: 0 0 16px;
+        color: var(--mut);
+        line-height: 1.5;
+      }
+      .popup-actions {
+        display: grid;
+        gap: 10px;
+        margin-top: 18px;
+      }
+      .dismiss {
+        border: none;
+        background: transparent;
+        color: var(--faint);
+        min-height: 44px;
+        cursor: pointer;
+      }
+      .sticky {
+        position: fixed;
+        left: 50%;
+        bottom: 14px;
+        transform: translate(-50%, 120%);
+        width: min(980px, calc(100% - 24px));
+        z-index: 70;
+        border-radius: 999px;
+        border: 1px solid var(--bd);
+        background: color-mix(in oklab, var(--bg) 70%, transparent);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        box-shadow: var(--sh);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform .22s ease, opacity .22s ease;
+      }
+      .sticky.visible {
+        transform: translate(-50%, 0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .sticky.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .sticky-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 14px;
+      }
+      .sticky-copy {
+        font-size: 13px;
+        font-weight: 800;
+      }
+      .sticky-button {
+        min-height: 44px;
+        padding: 11px 16px;
+        border-radius: 999px;
+        border: none;
+        background: linear-gradient(135deg, var(--acc), var(--acc2));
+        color: #061019;
+        font-weight: 800;
+        cursor: pointer;
+      }
+      @media (max-width: 640px) {
+        .page { padding-top: 24px; }
+        .hero, .popup-inner { padding: 20px; }
+        .sticky-inner {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .sticky-button { width: 100%; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell page">
+      <section class="hero">
+        <div class="pill">
+          <span class="pill-dot" aria-hidden="true"></span>
+          <span>Exclusive access opens in seconds</span>
+        </div>
+        <h1>Exclusive Members Area</h1>
+        <p class="sub">Join to unlock the full library.</p>
+      </section>
+
+      <section class="locked">
+        <div class="section-title">
+          <h2>Locked Preview</h2>
+          <p>Members-only content preview</p>
+        </div>
+
+        <div class="grid" aria-label="Locked content preview">
+          <article class="preview-card">
+            <!-- REPLACE with <img src="thumb-1.jpg" alt="Content preview" loading="lazy"> -->
+            <div class="thumb thumb-1" aria-hidden="true"></div>
+            <div class="overlay">
+              <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 1 1 8 0v3"></path></svg>
+              <span>Members Only</span>
+            </div>
+          </article>
+          <article class="preview-card">
+            <!-- REPLACE with <img src="thumb-2.jpg" alt="Content preview" loading="lazy"> -->
+            <div class="thumb thumb-2" aria-hidden="true"></div>
+            <div class="overlay">
+              <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 1 1 8 0v3"></path></svg>
+              <span>Members Only</span>
+            </div>
+          </article>
+          <article class="preview-card">
+            <!-- REPLACE with <img src="thumb-3.jpg" alt="Content preview" loading="lazy"> -->
+            <div class="thumb thumb-3" aria-hidden="true"></div>
+            <div class="overlay">
+              <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 1 1 8 0v3"></path></svg>
+              <span>Members Only</span>
+            </div>
+          </article>
+          <article class="preview-card">
+            <!-- REPLACE with <img src="thumb-4.jpg" alt="Content preview" loading="lazy"> -->
+            <div class="thumb thumb-4" aria-hidden="true"></div>
+            <div class="overlay">
+              <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 1 1 8 0v3"></path></svg>
+              <span>Members Only</span>
+            </div>
+          </article>
+          <article class="preview-card">
+            <!-- REPLACE with <img src="thumb-5.jpg" alt="Content preview" loading="lazy"> -->
+            <div class="thumb thumb-5" aria-hidden="true"></div>
+            <div class="overlay">
+              <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 1 1 8 0v3"></path></svg>
+              <span>Members Only</span>
+            </div>
+          </article>
+          <article class="preview-card">
+            <!-- REPLACE with <img src="thumb-6.jpg" alt="Content preview" loading="lazy"> -->
+            <div class="thumb thumb-6" aria-hidden="true"></div>
+            <div class="overlay">
+              <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 1 1 8 0v3"></path></svg>
+              <span>Members Only</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="conversion">
+          <div class="urgency"><span class="pill-dot" aria-hidden="true"></span>Only <b id="preview-spots">9</b> free spots remaining today</div>
+          <button class="cta cta-redirect" type="button">Unlock Free 3-Day Access →</button>
+        </div>
+      </section>
+    </main>
+
+    <div class="popup-overlay" id="popup-overlay" aria-hidden="true">
+      <div class="popup-sheet">
+        <div class="popup-inner">
+          <div class="pill">
+            <span class="pill-dot" aria-hidden="true"></span>
+            <span>🌸 Limited Offer</span>
+          </div>
+          <h2 class="popup-title">You've been selected</h2>
+          <p class="popup-text">Get 3 days of full access — completely free.</p>
+          <div class="urgency"><span class="pill-dot" aria-hidden="true"></span>Only <b id="popup-spots">9</b> spots left</div>
+          <div class="popup-actions">
+            <button class="cta cta-redirect" type="button">Claim My Free Access →</button>
+            <button class="dismiss" id="popup-dismiss" type="button">No thanks</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sticky" id="sticky-bar" aria-label="Free access bar">
+      <div class="sticky-inner">
+        <div class="sticky-copy">🌸 Free 3-day access available</div>
+        <button class="sticky-button" id="sticky-claim" type="button">Claim now →</button>
+      </div>
+    </div>
+
+    <script>
+      const META_PIXEL_ID = 'YOUR_META_PIXEL_ID';
+      const TIKTOK_PIXEL_ID = 'YOUR_TIKTOK_PIXEL_ID';
+      const POPUP_DELAY_MS = 1000;
+
+      fbq('init', META_PIXEL_ID);
+      ttq.load(TIKTOK_PIXEL_ID);
+      ttq.page();
+
+      const params = new URLSearchParams(window.location.search);
+      const tracking = {
+        fbclid: params.get('fbclid') || '',
+        ttclid: params.get('ttclid') || '',
+        utm_source: params.get('utm_source') || '',
+        utm_medium: params.get('utm_medium') || '',
+        utm_campaign: params.get('utm_campaign') || '',
+        utm_content: params.get('utm_content') || '',
+        utm_term: params.get('utm_term') || '',
+        ad_id: params.get('ad_id') || '',
+        adset_id: params.get('adset_id') || '',
+        campaign_id: params.get('campaign_id') || ''
+      };
+
+      function genId(prefix) {
+        return prefix + '_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
+      }
+
+      function sendCapi(event, eventId) {
+        fetch('/api/capi', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ event, event_id: eventId, ...tracking })
+        }).catch(() => {});
+      }
+
+      const previewSpots = document.getElementById('preview-spots');
+      const popupSpots = document.getElementById('popup-spots');
+      const spots = Math.floor(Math.random() * 7) + 7;
+      previewSpots.textContent = String(spots);
+      popupSpots.textContent = String(spots);
+
+      const overlay = document.getElementById('popup-overlay');
+      const dismiss = document.getElementById('popup-dismiss');
+      const stickyBar = document.getElementById('sticky-bar');
+      const stickyClaim = document.getElementById('sticky-claim');
+      let popupShown = false;
+      let leadSent = false;
+
+      function showPopup() {
+        popupShown = true;
+        overlay.classList.add('visible');
+        overlay.setAttribute('aria-hidden', 'false');
+        stickyBar.classList.add('hidden');
+        document.body.style.overflow = 'hidden';
+
+        if (!leadSent) {
+          leadSent = true;
+          const leadId = genId('lead');
+          fbq('track', 'Lead', {}, { eventID: leadId });
+          ttq.track('SubmitForm');
+          sendCapi('Lead', leadId);
+        }
+      }
+
+      function hidePopup() {
+        overlay.classList.remove('visible');
+        overlay.setAttribute('aria-hidden', 'true');
+        stickyBar.classList.remove('hidden');
+        document.body.style.overflow = '';
+      }
+
+      window.setTimeout(() => {
+        if (!popupShown) showPopup();
+      }, POPUP_DELAY_MS);
+
+      dismiss.addEventListener('click', hidePopup);
+      overlay.addEventListener('click', event => {
+        if (event.target === overlay) hidePopup();
+      });
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') hidePopup();
+      });
+
+      function handleScroll() {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = scrollable > 0 ? window.scrollY / scrollable : 0;
+        if (ratio > 0.4 && !overlay.classList.contains('visible')) {
+          stickyBar.classList.add('visible');
+        }
+      }
+
+      stickyClaim.addEventListener('click', showPopup);
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      handleScroll();
+
+      document.querySelectorAll('.cta-redirect').forEach(btn => {
+        btn.addEventListener('click', e => {
+          e.preventDefault();
+          window.location.href = '/api/redirect' + (window.location.search || '');
+        });
+      });
+    </script>
+  </body>
+</html>

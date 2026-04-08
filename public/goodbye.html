@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="color-scheme" content="light dark" />
+    <title>GLŌW - Continue</title>
+    <script>
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    </script>
+    <script>
+      !function (w, d, t) {
+        w.TiktokAnalyticsObject = t;
+        var ttq = w[t] = w[t] || [];
+        ttq.methods = ["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"];
+        ttq.setAndDefer = function(target, method) {
+          target[method] = function() {
+            target.push([method].concat(Array.prototype.slice.call(arguments, 0)));
+          };
+        };
+        for (var i = 0; i < ttq.methods.length; i += 1) ttq.setAndDefer(ttq, ttq.methods[i]);
+        ttq.instance = function(id) {
+          var instance = ttq._i[id] || [];
+          for (var j = 0; j < ttq.methods.length; j += 1) ttq.setAndDefer(instance, ttq.methods[j]);
+          return instance;
+        };
+        ttq.load = function(id, opts) {
+          var src = "https://analytics.tiktok.com/i18n/pixel/events.js";
+          ttq._i = ttq._i || {};
+          ttq._i[id] = [];
+          ttq._i[id]._u = src;
+          ttq._t = ttq._t || {};
+          ttq._t[id] = +new Date();
+          ttq._o = ttq._o || {};
+          ttq._o[id] = opts || {};
+          var script = d.createElement("script");
+          script.type = "text/javascript";
+          script.async = !0;
+          script.src = src + "?sdkid=" + id + "&lib=" + t;
+          var first = d.getElementsByTagName("script")[0];
+          first.parentNode.insertBefore(script, first);
+        };
+      }(window, document, "ttq");
+    </script>
+    <style>
+      :root {
+        --bg:#0b0f14;
+        --card:rgba(255,255,255,.06);
+        --card2:rgba(255,255,255,.1);
+        --bd:rgba(255,255,255,.12);
+        --tx:rgba(255,255,255,.92);
+        --mut:rgba(255,255,255,.68);
+        --faint:rgba(255,255,255,.5);
+        --acc:#b7ffda;
+        --acc2:#86a9ff;
+        --acc3:#ff89c8;
+        --sh:0 20px 70px rgba(0,0,0,.55);
+        --ring:0 0 0 6px rgba(183,255,218,.16);
+        --r:18px;
+        --r2:26px
+      }
+      [data-theme=light] {
+        --bg:#f7fafc;
+        --card:rgba(0,0,0,.04);
+        --card2:rgba(0,0,0,.06);
+        --bd:rgba(0,0,0,.12);
+        --tx:rgba(5,10,18,.9);
+        --mut:rgba(5,10,18,.65);
+        --faint:rgba(5,10,18,.5);
+        --acc:#00c389;
+        --acc2:#3e67ff;
+        --acc3:#ff2f93;
+        --sh:0 20px 70px rgba(20,30,44,.18);
+        --ring:0 0 0 6px rgba(0,195,137,.12)
+      }
+      * { box-sizing: border-box; }
+      html, body { min-height: 100%; }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+        background:
+          radial-gradient(1100px 800px at 15% 15%, rgba(134,169,255,.22), transparent 60%),
+          radial-gradient(900px 650px at 80% 25%, rgba(255,137,200,.16), transparent 55%),
+          radial-gradient(1100px 900px at 55% 80%, rgba(183,255,218,.12), transparent 58%),
+          var(--bg);
+        color: var(--tx);
+        display: grid;
+        place-items: center;
+        padding: 20px;
+        letter-spacing: -.01em;
+      }
+      .card {
+        width: min(460px, 100%);
+        border: 1px solid var(--bd);
+        border-radius: var(--r2);
+        background: color-mix(in oklab, var(--card) 84%, transparent);
+        box-shadow: var(--sh);
+        padding: 28px;
+        text-align: center;
+      }
+      .logo {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 58px;
+        height: 58px;
+        border-radius: 18px;
+        background: linear-gradient(140deg, var(--acc), var(--acc2), var(--acc3));
+        box-shadow: 0 10px 35px rgba(134,169,255,.18);
+        color: #061019;
+        font-weight: 900;
+        font-size: 18px;
+        letter-spacing: .08em;
+      }
+      h1 {
+        margin: 18px 0 10px;
+        font-size: 34px;
+        line-height: 1.05;
+        letter-spacing: -.04em;
+      }
+      p {
+        margin: 0;
+        color: var(--mut);
+        line-height: 1.55;
+        font-size: 15px;
+      }
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 50px;
+        margin-top: 22px;
+        padding: 14px 22px;
+        border-radius: 999px;
+        border: none;
+        background: linear-gradient(135deg, var(--acc), var(--acc2));
+        color: #061019;
+        font-weight: 820;
+        font-size: 15px;
+        box-shadow: 0 18px 55px rgba(134,169,255,.22);
+      }
+      [data-theme=light] .cta { color: #fff; }
+      .cta:focus-visible {
+        outline: none;
+        box-shadow: var(--ring);
+      }
+      .note {
+        margin-top: 14px;
+        font-size: 12px;
+        color: var(--faint);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="logo" aria-hidden="true">GLŌW</div>
+      <h1>You're leaving GLŌW</h1>
+      <p>The next page is on our partner platform. Your activity stays private.</p>
+      <a id="continue-link" class="cta" href="https://example.com">Continue to content →</a>
+      <div class="note">You can close this tab anytime if you do not want to continue.</div>
+    </div>
+
+    <script>
+      const META_PIXEL_ID = 'YOUR_META_PIXEL_ID';
+      const TIKTOK_PIXEL_ID = 'YOUR_TIKTOK_PIXEL_ID';
+
+      fbq('init', META_PIXEL_ID);
+      ttq.load(TIKTOK_PIXEL_ID);
+      ttq.page();
+
+      const params = new URLSearchParams(window.location.search);
+      const tracking = {
+        fbclid: params.get('fbclid') || '',
+        ttclid: params.get('ttclid') || '',
+        utm_source: params.get('utm_source') || '',
+        utm_medium: params.get('utm_medium') || '',
+        utm_campaign: params.get('utm_campaign') || '',
+        utm_content: params.get('utm_content') || '',
+        utm_term: params.get('utm_term') || '',
+        ad_id: params.get('ad_id') || '',
+        adset_id: params.get('adset_id') || '',
+        campaign_id: params.get('campaign_id') || ''
+      };
+
+      function genId(prefix) {
+        return prefix + '_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
+      }
+
+      function sendCapi(event, eventId) {
+        const payload = JSON.stringify({ event, event_id: eventId, ...tracking });
+        if (navigator.sendBeacon) {
+          const blob = new Blob([payload], { type: 'application/json' });
+          navigator.sendBeacon('/api/capi', blob);
+          return;
+        }
+
+        fetch('/api/capi', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: payload,
+          keepalive: true
+        }).catch(() => {});
+      }
+
+      const continueLink = document.getElementById('continue-link');
+      const encodedDest = params.get('dest');
+      let destination = 'https://example.com';
+
+      if (encodedDest) {
+        try {
+          destination = decodeURIComponent(encodedDest);
+        } catch (error) {
+          destination = 'https://example.com';
+        }
+      }
+
+      const url = new URL(destination);
+      params.forEach((value, key) => {
+        if (key !== 'dest') {
+          url.searchParams.set(key, value);
+        }
+      });
+      continueLink.href = url.toString();
+
+      continueLink.addEventListener('click', () => {
+        const clickId = params.get('event_id') || genId('click');
+        fbq('trackCustom', 'OutboundClick', { content_name: 'GLOW Continue' }, { eventID: clickId });
+        ttq.track('ClickButton');
+        sendCapi('OutboundClick', clickId);
+      });
+    </script>
+  </body>
+</html>
