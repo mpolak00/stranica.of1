@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>GLŌW - Continue</title>
+    <script>
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    </script>
+    <script>
+      !function (w, d, t) {
+        w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];
+        ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"];
+        ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}; 
+        for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);
+        ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e};
+        ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{};ttq._i[e]=[];ttq._i[e]._u=i;ttq._t=ttq._t||{};ttq._t[e]=+new Date;ttq._o=ttq._o||{};ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript";o.async=!0;o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
+      }(window, document, 'ttq');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://api.fontshare.com" />
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet" />
+    <style>
+      :root{--bg:#fdf6f4;--surface:#fff9f8;--border:rgba(180,80,100,.12);--text:#2a1a1d;--muted:#8a6870;--accent:#d4547a;--accent-h:#c03d65;--shadow:0 24px 60px rgba(42,26,29,.12);--font-display:'Cormorant Garamond',Georgia,serif;--font-body:'Satoshi','Inter',sans-serif;--ease:cubic-bezier(.16,1,.3,1)}
+      [data-theme=dark]{--bg:#100d0e;--surface:#181214;--border:rgba(255,180,200,.12);--text:#f5e8ec;--muted:#a98c96;--accent:#e87aa0;--accent-h:#f08ab0;--shadow:0 24px 60px rgba(0,0,0,.36)}
+      *{box-sizing:border-box}body{margin:0;min-height:100dvh;display:grid;place-items:center;padding:24px;font-family:var(--font-body);background:radial-gradient(circle at top,rgba(212,84,122,.08),transparent 35%),var(--bg);color:var(--text)}a{text-decoration:none;color:inherit}*:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:10px}
+      .card{width:min(520px,100%);padding:34px;border-radius:28px;border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow);text-align:center}.brand{font:italic 600 1.7rem var(--font-display)}.brand span{color:var(--accent)}h1{margin:18px 0 10px;font:italic 600 clamp(2rem,5vw,2.8rem)/1 var(--font-display)}p{margin:0 0 24px;color:var(--muted);line-height:1.6}.btn{min-height:48px;padding:0 22px;border-radius:999px;border:0;background:var(--accent);color:#fff;font-weight:800;display:inline-flex;align-items:center;justify-content:center;transition:transform .16s var(--ease),background .16s var(--ease)}.btn:hover{transform:translateY(-1px);background:var(--accent-h)}.small{margin-top:18px;font-size:.82rem;color:var(--muted)}
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <div class="brand">GL<span>Ō</span>W</div>
+      <h1>You're leaving GLŌW</h1>
+      <p>You are about to continue to an external site. Your access opens only after you confirm below.</p>
+      <a id="continue-link" class="btn" href="#" target="_blank" rel="noopener noreferrer">Continue →</a>
+      <div class="small">Your tracking parameters will stay attached so attribution remains clean.</div>
+    </main>
+
+    <script>
+      const META_PIXEL_ID = 'YOUR_META_PIXEL_ID';
+      const TIKTOK_PIXEL_ID = 'YOUR_TIKTOK_PIXEL_ID';
+
+      const root = document.documentElement;
+      root.setAttribute('data-theme', window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+      const qs = new URLSearchParams(location.search);
+      const tracking = {
+        fbclid: qs.get('fbclid') || '',
+        ttclid: qs.get('ttclid') || '',
+        utm_source: qs.get('utm_source') || '',
+        utm_medium: qs.get('utm_medium') || '',
+        utm_campaign: qs.get('utm_campaign') || '',
+        utm_content: qs.get('utm_content') || '',
+        utm_term: qs.get('utm_term') || '',
+        ad_id: qs.get('ad_id') || '',
+        adset_id: qs.get('adset_id') || '',
+        campaign_id: qs.get('campaign_id') || ''
+      };
+
+      function genId(prefix) {
+        return prefix + '_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
+      }
+
+      function sendCapi(event, eventId) {
+        const body = JSON.stringify({ event, event_id: eventId, ...tracking });
+        try {
+          if (navigator.sendBeacon) {
+            const blob = new Blob([body], { type: 'application/json' });
+            navigator.sendBeacon('/api/capi', blob);
+            return;
+          }
+        } catch (_) {}
+        fetch('/api/capi', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body,
+          keepalive: true
+        }).catch(() => {});
+      }
+
+      if (typeof fbq === 'function') fbq('init', META_PIXEL_ID);
+      if (typeof ttq !== 'undefined' && typeof ttq.load === 'function') {
+        ttq.load(TIKTOK_PIXEL_ID);
+        ttq.page();
+      }
+
+      const continueLink = document.getElementById('continue-link');
+      let destination = '';
+      try {
+        destination = decodeURIComponent(qs.get('dest') || '');
+      } catch (_) {
+        destination = qs.get('dest') || '';
+      }
+
+      try {
+        const url = new URL(destination);
+        Object.entries(tracking).forEach(([key, value]) => value && url.searchParams.set(key, value));
+        const eventId = qs.get('event_id');
+        if (eventId) url.searchParams.set('event_id', eventId);
+        continueLink.href = url.toString();
+      } catch (_) {
+        continueLink.href = destination || '#';
+      }
+
+      continueLink.addEventListener('click', () => {
+        const clickId = qs.get('event_id') || genId('click');
+        if (typeof fbq === 'function') fbq('trackCustom', 'OutboundClick', { content_name: 'GLOW CTA' }, { eventID: clickId });
+        if (typeof ttq !== 'undefined' && typeof ttq.track === 'function') ttq.track('ClickButton');
+        sendCapi('OutboundClick', clickId);
+      });
+    </script>
+  </body>
+</html>
