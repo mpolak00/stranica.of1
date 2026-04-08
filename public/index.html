@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>GLOW - Premium Wellness</title>
+    <meta
+      name="description"
+      content="GLOW is a premium wellness landing: glow rituals, recovery-first movement, skin-first nutrition, and habit design. Includes dark mode, sticky bar, and a smooth plan popup."
+    />
+    <style>
+      :root{--bg:#0b0f14;--card:rgba(255,255,255,.06);--card2:rgba(255,255,255,.1);--bd:rgba(255,255,255,.12);--tx:rgba(255,255,255,.92);--mut:rgba(255,255,255,.68);--acc:#b7ffda;--acc2:#86a9ff;--acc3:#ff89c8;--sh:0 20px 70px rgba(0,0,0,.55);--ring:0 0 0 6px rgba(183,255,218,.16);--r:18px;--r2:26px}
+      [data-theme="light"]{--bg:#f7fafc;--card:rgba(0,0,0,.04);--card2:rgba(0,0,0,.06);--bd:rgba(0,0,0,.12);--tx:rgba(5,10,18,.9);--mut:rgba(5,10,18,.65);--acc:#00c389;--acc2:#3e67ff;--acc3:#ff2f93;--sh:0 20px 70px rgba(20,30,44,.18);--ring:0 0 0 6px rgba(0,195,137,.12)}
+      *{box-sizing:border-box}html,body{height:100%}body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;background:radial-gradient(1100px 800px at 15% 15%,rgba(134,169,255,.22),transparent 60%),radial-gradient(900px 650px at 80% 25%,rgba(255,137,200,.16),transparent 55%),radial-gradient(1100px 900px at 55% 80%,rgba(183,255,218,.12),transparent 58%),var(--bg);color:var(--tx);letter-spacing:-.01em}
+      a{color:inherit;text-decoration:none}button{font:inherit}
+      .c{width:min(1100px,calc(100% - 40px));margin:0 auto}
+      .top{position:sticky;top:0;z-index:50;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:color-mix(in oklab,var(--bg) 70%,transparent);border-bottom:1px solid var(--bd)}
+      .topi{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0}
+      .brand{display:flex;gap:10px;align-items:center;font-weight:760;letter-spacing:.08em;text-transform:uppercase}
+      .logo{width:28px;height:28px;border-radius:10px;background:linear-gradient(140deg,var(--acc),var(--acc2),var(--acc3));box-shadow:0 10px 35px rgba(134,169,255,.15)}
+      .nav{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+      .nav a{font-size:13px;color:var(--mut);padding:8px 10px;border-radius:999px}
+      .nav a:hover{background:var(--card);color:var(--tx)}
+      .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 16px;border-radius:999px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font-weight:700;font-size:14px;cursor:pointer;transition:transform .14s ease,background .14s ease,box-shadow .14s ease}
+      .btn:hover{transform:translateY(-1px);background:var(--card2)}.btn:active{transform:translateY(0)}.btn:focus-visible{outline:none;box-shadow:var(--ring)}
+      .pri{border:none;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#061019;box-shadow:0 18px 55px rgba(134,169,255,.22)}
+      [data-theme="light"] .pri{color:#fff}
+      .ghost{background:transparent}
+      .pill{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;border:1px solid var(--bd);background:linear-gradient(180deg,color-mix(in oklab,var(--card) 70%,transparent),transparent);color:var(--mut);font-size:13px}
+      .dot{width:8px;height:8px;border-radius:999px;background:var(--acc);box-shadow:0 0 0 6px rgba(183,255,218,.12)}
+      .hero{padding:56px 0 24px}.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}@media(max-width:900px){.grid{grid-template-columns:1fr}}
+      .card{border:1px solid var(--bd);background:color-mix(in oklab,var(--card) 80%,transparent);border-radius:var(--r2);box-shadow:var(--sh)}
+      .hl{padding:28px;position:relative;overflow:hidden}.hl:before{content:"";position:absolute;inset:-2px;background:radial-gradient(900px 420px at 20% 20%,rgba(183,255,218,.18),transparent 60%),radial-gradient(800px 420px at 80% 35%,rgba(255,137,200,.14),transparent 60%);pointer-events:none;opacity:.9}.hl>*{position:relative}
+      h1{margin:14px 0 10px;font-size:clamp(34px,4vw,54px);line-height:1.02;letter-spacing:-.04em}
+      .sub{margin:0 0 18px;color:var(--mut);font-size:16px;line-height:1.45;max-width:62ch}
+      .acts{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 14px}.fine{font-size:12px;color:color-mix(in oklab,var(--mut) 80%,transparent)}
+      .hr{padding:20px}
+      .k{display:grid;grid-template-columns:1fr 1fr;gap:12px}.k>div{border:1px solid var(--bd);background:linear-gradient(180deg,color-mix(in oklab,var(--card2) 55%,transparent),transparent);border-radius:var(--r);padding:14px}.num{font-weight:850;font-size:22px;letter-spacing:-.03em}.lbl{margin-top:4px;color:var(--mut);font-size:12px}
+      .mini{margin-top:12px;border:1px solid var(--bd);background:var(--card);border-radius:var(--r);padding:14px}.mini h3{margin:0 0 8px;font-size:13px;letter-spacing:.02em;text-transform:uppercase;color:var(--mut)}
+      ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}.li{display:flex;gap:10px;align-items:flex-start}.chk{width:18px;height:18px;margin-top:1px;border-radius:6px;background:color-mix(in oklab,var(--acc) 22%,var(--card2));border:1px solid color-mix(in oklab,var(--acc) 35%,var(--bd));flex:0 0 auto}
+      .li b{font-size:13px}.li span{display:block;color:var(--mut);font-size:13px;margin-top:2px}
+      section{padding:18px 0}.st{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin:0 0 14px}.st h2{margin:0;font-size:18px}.st p{margin:0;color:var(--mut);font-size:13px}
+      .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}@media(max-width:900px){.g3{grid-template-columns:1fr}}
+      .tile{border:1px solid var(--bd);background:var(--card);border-radius:var(--r2);padding:18px;transition:transform .15s ease,background .15s ease,border-color .15s ease}
+      .tile:hover{transform:translateY(-2px);background:color-mix(in oklab,var(--card2) 70%,transparent);border-color:color-mix(in oklab,var(--bd) 60%,var(--acc2))}
+      .tile h3{margin:0 0 8px;font-size:15px}.tile p{margin:0;color:var(--mut);font-size:13px;line-height:1.45}
+      .split{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:900px){.split{grid-template-columns:1fr}}
+      .q{border:1px solid var(--bd);background:linear-gradient(180deg,color-mix(in oklab,var(--card2) 50%,transparent),transparent);border-radius:var(--r2);padding:20px}.q p{margin:0 0 10px;font-size:14px}.who{color:var(--mut);font-size:12px}
+      .foot{padding:30px 0 100px;color:var(--mut);font-size:12px}.fg{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}@media(max-width:700px){.fg{grid-template-columns:1fr}}
+      .stick{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);width:min(980px,calc(100% - 24px));z-index:60;border-radius:999px;border:1px solid var(--bd);background:color-mix(in oklab,var(--bg) 70%,transparent);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:var(--sh)}
+      .si{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 12px}.sl{display:flex;flex-direction:column;gap:2px;min-width:0}.stt{font-weight:800;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ss{font-size:12px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sa{display:flex;gap:10px;align-items:center;flex:0 0 auto}
+      .back{position:fixed;inset:0;background:rgba(0,0,0,.52);display:none;align-items:center;justify-content:center;z-index:80;padding:18px}
+      [data-theme="light"] .back{background:rgba(5,10,18,.22)}
+      .back[data-open="true"]{display:flex}
+      .m{width:min(720px,100%);border-radius:var(--r2);border:1px solid var(--bd);background:color-mix(in oklab,var(--bg) 84%,transparent);box-shadow:var(--sh);overflow:hidden}
+      .mh{display:flex;align-items:center;justify-content:space-between;padding:16px 16px 12px;border-bottom:1px solid var(--bd)}.mh h3{margin:0;font-size:14px;letter-spacing:.02em;text-transform:uppercase;color:var(--mut)}
+      .x{border:1px solid var(--bd);background:transparent;color:var(--tx);border-radius:12px;padding:8px 10px;cursor:pointer}
+      .mb{padding:16px}
+      .f{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:720px){.f{grid-template-columns:1fr}}
+      .fd{display:flex;flex-direction:column;gap:6px}.fd label{font-size:12px;color:var(--mut)}
+      .fd select,.fd textarea{border-radius:14px;border:1px solid var(--bd);padding:12px 12px;font-size:14px;background:color-mix(in oklab,var(--card) 82%,transparent);color:var(--tx);outline:none}
+      .fd textarea{min-height:88px;resize:vertical;grid-column:1/-1}
+      .fd select:focus,.fd textarea:focus{box-shadow:var(--ring);border-color:color-mix(in oklab,var(--bd) 40%,var(--acc))}
+      .ma{display:flex;gap:10px;align-items:center;justify-content:flex-end;margin-top:14px;flex-wrap:wrap}
+      .toast{position:fixed;top:16px;right:16px;z-index:100;width:min(360px,calc(100% - 32px));border-radius:16px;border:1px solid var(--bd);background:color-mix(in oklab,var(--bg) 82%,transparent);box-shadow:var(--sh);padding:12px 14px;display:none}
+      .toast[data-open="true"]{display:block}.tt{font-weight:800;font-size:13px;margin:0 0 4px}.tb{margin:0;font-size:12px;color:var(--mut);line-height:1.35}
+      code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:.95em}
+    </style>
+  </head>
+  <body>
+    <header class="top">
+      <div class="c topi">
+        <a class="brand" href="#top" aria-label="GLOW Home">
+          <span class="logo" aria-hidden="true"></span><span>GLOW</span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="#rituals">Rituals</a>
+          <a href="#method">Method</a>
+          <a href="#results">Results</a>
+          <a href="#faq">FAQ</a>
+          <button class="btn ghost" id="themeToggle" type="button" aria-pressed="false">
+            <span aria-hidden="true">◐</span><span>Theme</span>
+          </button>
+          <a class="btn pri" id="topCta" href="/api/redirect">Join</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <div class="c hero">
+        <div class="grid">
+          <section class="card hl" aria-label="Hero">
+            <div class="pill"><span class="dot" aria-hidden="true"></span><span>Premium wellness — calm, confident, consistent</span></div>
+            <h1>Glow isn’t a look. It’s a system.</h1>
+            <p class="sub">Recovery-first movement, skin-first nutrition, and habit design — built to feel luxurious, grounded, and real.</p>
+            <div class="acts">
+              <a class="btn pri" id="heroPrimary" href="/api/redirect">Start your glow ritual <span aria-hidden="true">→</span></a>
+              <button class="btn" id="openModal" type="button">Get a personalized plan</button>
+              <a class="btn ghost" href="#rituals">Explore the method</a>
+            </div>
+            <div class="fine">No hard sells. Clicks go through <code>/api/redirect</code> (no direct external links in this HTML).</div>
+          </section>
+
+          <aside class="card hr" aria-label="Highlights">
+            <div class="k">
+              <div><div class="num">7 min</div><div class="lbl">Daily ritual template</div></div>
+              <div><div class="num">3×</div><div class="lbl">Weekly reset protocol</div></div>
+              <div><div class="num">0</div><div class="lbl">Fluff — only essentials</div></div>
+              <div><div class="num">24/7</div><div class="lbl">Access + updates</div></div>
+            </div>
+            <div class="mini">
+              <h3>What you get</h3>
+              <ul>
+                <li class="li"><span class="chk" aria-hidden="true"></span><div><b>Glow Rituals</b><span>AM/PM templates that actually stick.</span></div></li>
+                <li class="li"><span class="chk" aria-hidden="true"></span><div><b>Recovery-first movement</b><span>Posture, tone, low-stress strength.</span></div></li>
+                <li class="li"><span class="chk" aria-hidden="true"></span><div><b>Nutrition made easy</b><span>Simple meal logic + staples list.</span></div></li>
+                <li class="li"><span class="chk" aria-hidden="true"></span><div><b>Mindset & sleep</b><span>Reset tools to keep energy steady.</span></div></li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <div class="c">
+        <section id="rituals">
+          <div class="st"><h2>Rituals that feel expensive (because your time is)</h2><p>Small daily actions, high consistency.</p></div>
+          <div class="g3">
+            <div class="tile"><h3>AM Reset</h3><p>Hydration, breath, posture, and a simple “glow plate” rule.</p></div>
+            <div class="tile"><h3>Midday Recharge</h3><p>Sunlight + walk + a 2-minute shoulder & jaw release.</p></div>
+            <div class="tile"><h3>PM Wind-down</h3><p>Skincare cadence, magnesium-friendly dinner logic, sleep anchor.</p></div>
+          </div>
+        </section>
+
+        <section id="method">
+          <div class="st"><h2>A simple method, built on real principles</h2><p>No “one weird trick.” Just smart defaults.</p></div>
+          <div class="split">
+            <div class="q"><p>“When I stopped chasing perfection and built a system, I finally looked rested — and felt calm.”</p><div class="who">Member feedback — routine consistency</div></div>
+            <div class="q"><p>“The reset protocol is ridiculously practical. It’s the first plan I’ve actually followed.”</p><div class="who">Member feedback — weekly reset</div></div>
+          </div>
+        </section>
+
+        <section id="results">
+          <div class="st"><h2>Designed for real-life results</h2><p>Calm energy, clearer decisions, better sleep.</p></div>
+          <div class="g3">
+            <div class="tile"><h3>Less inflammation</h3><p>Gentle routines + food basics: hydration, steady protein, consistent sleep cues.</p></div>
+            <div class="tile"><h3>Better posture & tone</h3><p>Alignment, steps, mobility, and low-stress strength work.</p></div>
+            <div class="tile"><h3>Glow as a byproduct</h3><p>When stress drops and routines stabilize, skin and confidence follow.</p></div>
+          </div>
+        </section>
+
+        <section id="faq">
+          <div class="st"><h2>FAQ</h2><p>Quick answers, no drama.</p></div>
+          <div class="split">
+            <div class="tile"><h3>Is this a fitness program?</h3><p>It’s a wellness system: movement + recovery + nutrition + habit design.</p></div>
+            <div class="tile"><h3>Do I need special equipment?</h3><p>No. A mat and band help, but the core system works without extras.</p></div>
+            <div class="tile"><h3>How do I access it?</h3><p>Tap any “Join” button. You’ll go through a secure redirect with your tracking params.</p></div>
+            <div class="tile"><h3>Is my data safe?</h3><p>No third-party trackers embedded. Click events can be sent server-side for attribution.</p></div>
+          </div>
+        </section>
+
+        <footer class="foot">
+          <div class="fg">
+            <div>
+              <div style="font-weight:800;margin-bottom:6px">GLOW</div>
+              <div>Premium wellness landing. Educational content only. Not medical advice.</div>
+              <div style="margin-top:8px">
+                <a href="#top" style="text-decoration:underline">Back to top</a>
+                <span aria-hidden="true"> · </span>
+                <a id="footerJoin" href="/api/redirect" style="text-decoration:underline">Join</a>
+                <span aria-hidden="true"> · </span>
+                <a href="#faq" style="text-decoration:underline">FAQ</a>
+              </div>
+            </div>
+            <div class="pill"><span class="dot" aria-hidden="true"></span><span>Secure redirect enabled</span></div>
+          </div>
+        </footer>
+      </div>
+    </main>
+
+    <div class="stick" role="region" aria-label="Sticky action bar">
+      <div class="si c" style="width:100%">
+        <div class="sl">
+          <div class="stt">Ready to start your glow ritual?</div>
+          <div class="ss">Tap once — redirect + server-side click log.</div>
+        </div>
+        <div class="sa">
+          <button class="btn ghost" id="stickyPlan" type="button">Plan</button>
+          <a class="btn pri" id="stickyJoin" href="/api/redirect">Join <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="back" id="modalBackdrop" aria-hidden="true" data-open="false">
+      <div class="m" role="dialog" aria-modal="true" aria-label="Glow plan">
+        <div class="mh">
+          <h3>Personalized glow plan</h3>
+          <button class="x" id="closeModal" type="button">Close</button>
+        </div>
+        <div class="mb">
+          <form class="f" id="planForm">
+            <div class="fd">
+              <label for="goal">Primary goal</label>
+              <select id="goal" name="goal" required>
+                <option value="energy">More energy & less stress</option>
+                <option value="skin">Clearer skin & consistency</option>
+                <option value="tone">Posture & tone</option>
+                <option value="sleep">Better sleep</option>
+              </select>
+            </div>
+            <div class="fd">
+              <label for="time">Daily time</label>
+              <select id="time" name="time" required>
+                <option value="7">7 minutes</option>
+                <option value="12">12 minutes</option>
+                <option value="20">20 minutes</option>
+              </select>
+            </div>
+            <div class="fd" style="grid-column:1/-1">
+              <label for="notes">Anything you want to focus on?</label>
+              <textarea id="notes" name="notes" placeholder="Example: stress, posture, sleep schedule…"></textarea>
+            </div>
+            <div class="ma" style="grid-column:1/-1">
+              <button class="btn" type="submit">Save plan</button>
+              <a class="btn pri" id="modalJoin" href="/api/redirect">Continue <span aria-hidden="true">→</span></a>
+            </div>
+            <p class="fine" style="grid-column:1/-1;margin:0">
+              Plan is stored locally. Clicks route via <code>/api/redirect</code>.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" data-open="false">
+      <p class="tt" id="toastTitle">Saved</p>
+      <p class="tb" id="toastBody">Your glow plan is ready.</p>
+    </div>
+
+    <script>
+      (function () {
+        const qs = new URLSearchParams(location.search);
+        const paramsToCarry = ["fbclid","ttclid","utm_source","utm_medium","utm_campaign","utm_content","utm_term","ad_id","adset_id","campaign_id"];
+
+        function getClickId() {
+          const existing = sessionStorage.getItem("glow_click_id");
+          if (existing) return existing;
+          const id = "click_" + Date.now() + "_" + Math.random().toString(36).slice(2, 10);
+          sessionStorage.setItem("glow_click_id", id);
+          return id;
+        }
+
+        function buildRedirectUrl() {
+          const out = new URL("/api/redirect", location.origin);
+          for (const k of paramsToCarry) {
+            const v = qs.get(k);
+            if (v) out.searchParams.set(k, v);
+          }
+          out.searchParams.set("event_id", getClickId());
+          return out.toString();
+        }
+
+        function wireJoinLink(id) {
+          const el = document.getElementById(id);
+          if (!el) return;
+          el.setAttribute("href", buildRedirectUrl());
+          el.addEventListener("click", () => sessionStorage.setItem("glow_last_join_ts", String(Date.now())));
+        }
+        ["topCta","heroPrimary","stickyJoin","footerJoin","modalJoin"].forEach(wireJoinLink);
+
+        const themeToggle = document.getElementById("themeToggle");
+        const root = document.documentElement;
+        function applyTheme(theme) {
+          root.setAttribute("data-theme", theme);
+          themeToggle && themeToggle.setAttribute("aria-pressed", theme === "light" ? "true" : "false");
+        }
+        const savedTheme = localStorage.getItem("glow_theme");
+        applyTheme(savedTheme === "light" || savedTheme === "dark" ? savedTheme : "dark");
+        themeToggle && themeToggle.addEventListener("click", () => {
+          const current = root.getAttribute("data-theme") || "dark";
+          const next = current === "dark" ? "light" : "dark";
+          localStorage.setItem("glow_theme", next);
+          applyTheme(next);
+        });
+
+        const back = document.getElementById("modalBackdrop");
+        const openModal = document.getElementById("openModal");
+        const closeModal = document.getElementById("closeModal");
+        const stickyPlan = document.getElementById("stickyPlan");
+        const planForm = document.getElementById("planForm");
+        const toast = document.getElementById("toast");
+        const toastTitle = document.getElementById("toastTitle");
+        const toastBody = document.getElementById("toastBody");
+
+        function setModal(open) {
+          if (!back) return;
+          back.dataset.open = open ? "true" : "false";
+          back.setAttribute("aria-hidden", open ? "false" : "true");
+          if (open) document.getElementById("goal") && document.getElementById("goal").focus();
+        }
+
+        function showToast(title, body) {
+          if (!toast) return;
+          toastTitle.textContent = title;
+          toastBody.textContent = body;
+          toast.dataset.open = "true";
+          window.setTimeout(() => (toast.dataset.open = "false"), 2800);
+        }
+
+        function loadPlan() {
+          try {
+            const raw = localStorage.getItem("glow_plan");
+            return raw ? JSON.parse(raw) : null;
+          } catch {
+            return null;
+          }
+        }
+        function savePlan(plan) {
+          localStorage.setItem("glow_plan", JSON.stringify(plan));
+        }
+
+        const existing = loadPlan();
+        if (existing) {
+          if (existing.goal) document.getElementById("goal").value = existing.goal;
+          if (existing.time) document.getElementById("time").value = existing.time;
+          if (typeof existing.notes === "string") document.getElementById("notes").value = existing.notes;
+        }
+
+        openModal && openModal.addEventListener("click", () => setModal(true));
+        stickyPlan && stickyPlan.addEventListener("click", () => setModal(true));
+        closeModal && closeModal.addEventListener("click", () => setModal(false));
+        back && back.addEventListener("click", (e) => { if (e.target === back) setModal(false); });
+        document.addEventListener("keydown", (e) => { if (e.key === "Escape") setModal(false); });
+
+        planForm && planForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const plan = {
+            goal: String(document.getElementById("goal").value || ""),
+            time: String(document.getElementById("time").value || ""),
+            notes: String(document.getElementById("notes").value || ""),
+            savedAt: new Date().toISOString(),
+          };
+          savePlan(plan);
+          showToast("Saved", "Your glow plan is ready.");
+          setModal(false);
+        });
+
+        let popupShown = false;
+        function showPopupOnce() {
+          if (popupShown) return;
+          popupShown = true;
+          const last = Number(sessionStorage.getItem("glow_popup_ts") || "0");
+          if (Date.now() - last < 60 * 1000) return;
+          sessionStorage.setItem("glow_popup_ts", String(Date.now()));
+          setModal(true);
+        }
+        window.setTimeout(() => {
+          const lastJoin = Number(sessionStorage.getItem("glow_last_join_ts") || "0");
+          if (Date.now() - lastJoin < 30 * 1000) return;
+          showPopupOnce();
+        }, 24000);
+        document.addEventListener("mouseout", (e) => { if (e.clientY <= 0) showPopupOnce(); });
+      })();
+    </script>
+  </body>
+</html>
