@@ -152,7 +152,7 @@
 
     /* ── PHOTO GRID ── */
     .grid-section {
-      padding: 12px 12px 0;
+      padding: 6px 6px 0;
     }
 
     .photo-grid {
@@ -164,15 +164,16 @@
     .photo-item {
       overflow: hidden;
       background: linear-gradient(135deg, #e8d5c4 0%, #d4b8a8 100%);
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 3 / 4;   /* default portrait */
     }
 
-    /* photo-1 portrait — taller */
+    /* photo-1: landscape banner — full width */
     .photo-item:nth-child(1) {
-      aspect-ratio: 3 / 4;
+      grid-column: 1 / -1;
+      aspect-ratio: 16 / 9;
     }
 
-    /* last photo (photo-5) spans full width */
+    /* photo-5: landscape banner — full width */
     .photo-item:last-child {
       grid-column: 1 / -1;
       aspect-ratio: 16 / 9;
@@ -251,15 +252,19 @@
     /* ── TABLET / DESKTOP ── */
     @media (min-width: 600px) {
       .nav { padding: 0 32px; }
-      .hero-caption { left: 32px; bottom: 28px; }
       .ig-bar { padding: 16px 32px; }
-      .grid-section { padding: 16px 16px 0; }
+      .grid-section { padding: 10px 10px 0; }
       .photo-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 10px;
       }
-      .photo-item:nth-child(1) { aspect-ratio: 4/3; }
-      .photo-item:last-child { grid-column: 1 / -1; aspect-ratio: 21/9; }
+      /* photo-1 and photo-5 still span full width */
+      .photo-item:nth-child(1) { grid-column: 1 / -1; aspect-ratio: 21/9; }
+      .photo-item:last-child   { grid-column: 1 / -1; aspect-ratio: 21/9; }
+      /* middle 3 photos portrait */
+      .photo-item:nth-child(2),
+      .photo-item:nth-child(3),
+      .photo-item:nth-child(4) { aspect-ratio: 3/4; }
       .cta-section { padding: 56px 32px 72px; }
     }
 
