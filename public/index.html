@@ -75,28 +75,33 @@
     .nav-join:hover,
     .nav-join:active { color: var(--ink); border-color: var(--ink); }
 
-    /* ── HERO VIDEO — full-width horizontal ── */
+    /* ── HERO VIDEO — portrait, full visible ── */
     .hero-wrap {
       position: relative;
       width: 100%;
       overflow: hidden;
       background: #0a0a0a;
+      display: flex;
+      justify-content: center;
     }
 
     .hero-video {
-      width: 100%;
-      height: 56vw;         /* 16:9 on desktop */
-      max-height: 75vh;
-      min-height: 240px;
-      object-fit: cover;
       display: block;
+      width: 100%;
+      max-width: 540px;      /* portrait pillar on desktop */
+      height: auto;
+      max-height: 88vh;
+      object-fit: cover;
     }
 
     .hero-caption {
       position: absolute;
       bottom: 20px;
-      left: 20px;
-      right: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 540px;
+      padding: 0 20px;
     }
 
     .hero-caption h1 {
@@ -122,21 +127,22 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 0 20px;
+      padding: 0 24px;
       height: 44px;
-      border: 1px solid var(--border);
-      color: var(--ink);
+      border: none;
+      color: #ffffff;
       font-size: 13px;
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: 0.02em;
-      background: var(--white);
-      transition: border-color 0.15s, background 0.15s;
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      border-radius: 6px;
+      transition: opacity 0.15s, transform 0.15s;
       -webkit-tap-highlight-color: transparent;
       white-space: nowrap;
     }
 
-    .ig-btn:hover,
-    .ig-btn:active { border-color: var(--ink); background: var(--off-white); }
+    .ig-btn:hover { opacity: 0.9; }
+    .ig-btn:active { transform: scale(0.97); opacity: 0.9; }
 
     .ig-btn svg {
       width: 18px;
