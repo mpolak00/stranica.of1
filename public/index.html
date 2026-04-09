@@ -51,9 +51,9 @@
     .hero {
       position: relative;
       width: 100%;
-      /* 4:5 portrait — matches video content, no face distortion */
-      aspect-ratio: 4 / 5;
-      max-height: 72vh;
+      /* natural 9:16 video ratio — zero distortion */
+      aspect-ratio: 9 / 16;
+      max-height: 80dvh;
       overflow: hidden;
     }
 
@@ -63,7 +63,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 20%;
+      object-position: center center;
     }
 
     /* dark gradient overlay — bottom up */
