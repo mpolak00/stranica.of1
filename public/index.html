@@ -4,32 +4,24 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <meta name="robots" content="index, follow"/>
-  <title>GLŌW — Wellness &amp; Lifestyle</title>
-  <meta name="description" content="Magdalena — wellness &amp; lifestyle. Exclusive content for members."/>
+  <title>GLŌW — Magdalena</title>
+  <meta name="description" content="Magdalena — wellness & lifestyle."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --white:     #ffffff;
-      --off-white: #fafaf9;
-      --ink:       #111111;
-      --muted:     #888888;
-      --faint:     #aaaaaa;
-      --accent:    #c9a96e;
-      --border:    #e8e4e0;
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
-    html, body { height: 100%; }
-
     body {
-      background: var(--white);
-      color: var(--ink);
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      font-size: 15px;
-      line-height: 1.5;
+      background: #FAF7F2;
+      color: #1C1C1C;
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       -webkit-text-size-adjust: 100%;
     }
@@ -37,323 +29,236 @@
     a { color: inherit; text-decoration: none; }
     img, video { display: block; }
 
-    /* ── NAV ── */
-    .nav {
-      height: 52px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 20px;
-      position: relative;
-      z-index: 10;
+    /* ── NAVBAR ── */
+    .navbar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      z-index: 20;
+      padding: 20px 24px;
     }
 
-    .nav-brand {
-      font-family: 'Cormorant Garamond', serif;
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
       font-style: italic;
       font-weight: 400;
       font-size: 20px;
       letter-spacing: 0.06em;
-      color: var(--ink);
+      color: #ffffff;
+      text-shadow: 0 1px 12px rgba(0,0,0,0.4);
     }
 
-    .nav-join {
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 0 18px;
-      height: 44px;
-      min-width: 44px;
-      display: inline-flex;
-      align-items: center;
-      transition: color 0.15s, border-color 0.15s;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .nav-join:hover,
-    .nav-join:active { color: var(--ink); border-color: var(--ink); }
-
-    /* ── HERO VIDEO — portrait, full visible ── */
-    .hero-wrap {
+    /* ── HERO ── */
+    .hero {
       position: relative;
       width: 100%;
+      height: 100dvh;
       overflow: hidden;
-      background: #0a0a0a;
-      display: flex;
-      justify-content: center;
     }
 
     .hero-video {
-      display: block;
+      position: absolute;
+      inset: 0;
       width: 100%;
-      max-width: 540px;      /* portrait pillar on desktop */
-      height: auto;
-      max-height: 88vh;
+      height: 100%;
       object-fit: cover;
     }
 
-    .hero-caption {
+    /* dark gradient overlay — bottom up */
+    .hero-overlay {
       position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 540px;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.62) 0%,
+        rgba(0,0,0,0.18) 45%,
+        transparent 70%
+      );
+    }
+
+    .hero-copy {
+      position: absolute;
+      bottom: 20%;
+      left: 0; right: 0;
+      text-align: center;
       padding: 0 20px;
     }
 
-    .hero-caption h1 {
-      font-family: 'Cormorant Garamond', serif;
+    .hero-name {
+      font-family: 'Playfair Display', serif;
       font-style: italic;
-      font-weight: 300;
-      font-size: clamp(20px, 5vw, 40px);
-      line-height: 1.15;
-      letter-spacing: 0.01em;
+      font-weight: 400;
+      font-size: clamp(40px, 10vw, 80px);
       color: #ffffff;
-      text-shadow: 0 1px 20px rgba(0,0,0,0.5);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
     }
 
-    /* ── INSTAGRAM BUTTON ── */
+    .hero-sub {
+      margin-top: 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+    }
+
+    /* ── INSTAGRAM BAR ── */
     .ig-bar {
       display: flex;
-      justify-content: center;
-      padding: 14px 20px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .ig-btn {
-      display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 0 24px;
-      height: 44px;
-      border: none;
-      color: #ffffff;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-      border-radius: 6px;
-      transition: opacity 0.15s, transform 0.15s;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px 16px;
+      background: #FAF7F2;
+      border-bottom: 1px solid #C9A96E;
+      transition: opacity 0.2s;
+      cursor: pointer;
       -webkit-tap-highlight-color: transparent;
-      white-space: nowrap;
     }
 
-    .ig-btn:hover { opacity: 0.9; }
-    .ig-btn:active { transform: scale(0.97); opacity: 0.9; }
+    .ig-bar:hover { opacity: 0.75; }
 
-    .ig-btn svg {
-      width: 18px;
-      height: 18px;
+    .ig-bar svg {
+      width: 20px;
+      height: 20px;
       flex-shrink: 0;
+      color: #C9A96E;
     }
 
-    /* ── PHOTO GRID ── */
-    .grid-section {
-      padding: 6px 6px 0;
+    .ig-handle {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: #1C1C1C;
+      letter-spacing: 0.01em;
     }
 
-    .photo-grid {
+    /* ── GALLERY ── */
+    .gallery {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 6px;
+      gap: 3px;
     }
 
-    .photo-item {
-      overflow: hidden;
-      background: linear-gradient(135deg, #e8d5c4 0%, #d4b8a8 100%);
-      aspect-ratio: 3 / 4;   /* default portrait */
-    }
-
-    /* photo-1: landscape banner — full width */
-    .photo-item:nth-child(1) {
-      grid-column: 1 / -1;
-      aspect-ratio: 16 / 9;
-    }
-
-    /* photo-5: landscape banner — full width */
-    .photo-item:last-child {
-      grid-column: 1 / -1;
-      aspect-ratio: 16 / 9;
-    }
-
-    .photo-item img {
+    .gallery img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    /* individual bg tints as fallback */
-    .photo-item:nth-child(1) { background: linear-gradient(135deg, #e8d5c4 0%, #c9a96e 100%); }
-    .photo-item:nth-child(2) { background: linear-gradient(145deg, #ddc8b8 0%, #c4a892 100%); }
-    .photo-item:nth-child(3) { background: linear-gradient(125deg, #e2d0c0 0%, #ccb59e 100%); }
-    .photo-item:nth-child(4) { background: linear-gradient(155deg, #d8c4b0 0%, #c8a98a 100%); }
-    .photo-item:nth-child(5) { background: linear-gradient(130deg, #e4d2c4 0%, #d2b8a8 100%); }
+    /* ── MOBILE (< 768px): 2-col edge-to-edge ── */
+    @media (max-width: 767px) {
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
 
-    /* ── CTA ── */
-    .cta-section {
-      padding: 40px 20px 56px;
-      text-align: center;
+      /* photo-1: full-width editorial opener */
+      .gallery .p1 {
+        grid-column: 1 / -1;
+        aspect-ratio: 3 / 2;
+      }
+
+      /* rest: 4:5 portrait */
+      .gallery .p2,
+      .gallery .p3,
+      .gallery .p4,
+      .gallery .p5 {
+        aspect-ratio: 4 / 5;
+      }
+
+      /* photo-5 last — if odd number, span full width for clean end */
+      .gallery .p5 {
+        grid-column: 1 / -1;
+        aspect-ratio: 3 / 2;
+      }
     }
 
-    .cta-rule {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 0 auto 32px;
-      max-width: 320px;
-    }
+    /* ── DESKTOP (>= 768px): 3-col asymmetric ── */
+    @media (min-width: 768px) {
+      .gallery {
+        grid-template-columns: repeat(3, 1fr);
+      }
 
-    .cta-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-weight: 300;
-      font-size: clamp(18px, 5vw, 26px);
-      color: var(--ink);
-      margin-bottom: 24px;
-      letter-spacing: 0.01em;
-    }
+      /* row 1: photo-1 and photo-2 side by side (2fr), photo-3 stacked */
+      .gallery .p1 {
+        grid-column: 1 / 3;
+        aspect-ratio: 4 / 3;
+      }
 
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--ink);
-      background: transparent;
-      color: var(--ink);
-      font-family: inherit;
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0 32px;
-      height: 48px;
-      min-width: 160px;
-      cursor: pointer;
-      transition: background 0.15s, color 0.15s;
-      text-decoration: none;
-      -webkit-tap-highlight-color: transparent;
-    }
+      .gallery .p2 {
+        grid-column: 3 / 4;
+        aspect-ratio: 4 / 3;
+      }
 
-    .cta-btn:hover,
-    .cta-btn:active { background: var(--ink); color: var(--white); }
+      /* row 2: photo-3 full width */
+      .gallery .p3 {
+        grid-column: 1 / -1;
+        aspect-ratio: 16 / 5;
+      }
+
+      /* row 3: photo-4 and photo-5 side by side */
+      .gallery .p4,
+      .gallery .p5 {
+        aspect-ratio: 4 / 3;
+      }
+    }
 
     /* ── FOOTER ── */
     footer {
-      padding: 16px 20px;
-      border-top: 1px solid var(--border);
+      padding: 32px 16px;
       text-align: center;
-      color: var(--faint);
-      font-size: 11px;
+      border-top: 1px solid #E8D5C4;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #888888;
       letter-spacing: 0.03em;
-    }
-
-    /* ── TABLET / DESKTOP ── */
-    @media (min-width: 600px) {
-      .nav { padding: 0 32px; }
-      .ig-bar { padding: 16px 32px; }
-      .grid-section { padding: 10px 10px 0; }
-      .photo-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-      }
-      /* photo-1 and photo-5 still span full width */
-      .photo-item:nth-child(1) { grid-column: 1 / -1; aspect-ratio: 21/9; }
-      .photo-item:last-child   { grid-column: 1 / -1; aspect-ratio: 21/9; }
-      /* middle 3 photos portrait */
-      .photo-item:nth-child(2),
-      .photo-item:nth-child(3),
-      .photo-item:nth-child(4) { aspect-ratio: 3/4; }
-      .cta-section { padding: 56px 32px 72px; }
-    }
-
-    @media (min-width: 1024px) {
-      .nav { padding: 0 48px; }
-      .hero-caption { left: 48px; bottom: 36px; }
-      .ig-bar { padding: 18px 48px; }
-      .grid-section { padding: 20px 20px 0; }
-      .photo-grid { gap: 12px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav class="nav" aria-label="Main navigation">
-    <a href="/" class="nav-brand">GLŌW</a>
-    <a href="/access" id="access-link" class="nav-join">Join</a>
-  </nav>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <span class="navbar-brand">GLŌW</span>
+  </header>
 
-  <!-- HERO VIDEO (horizontal, full-width) -->
-  <section class="hero-wrap" aria-label="Hero">
+  <!-- HERO VIDEO -->
+  <section class="hero">
     <video class="hero-video" autoplay muted loop playsinline preload="auto">
-      <source src="hero.mp4" type="video/mp4">
+      <source src="hero.mp4" type="video/mp4"/>
     </video>
-    <div class="hero-caption">
-      <h1>Magdalena — wellness &amp; lifestyle</h1>
+    <div class="hero-overlay"></div>
+    <div class="hero-copy">
+      <h1 class="hero-name">Magdalena</h1>
+      <p class="hero-sub">wellness &amp; lifestyle</p>
     </div>
   </section>
 
-  <!-- INSTAGRAM -->
-  <div class="ig-bar">
-    <a class="ig-btn" href="https://www.instagram.com/_magzi?igsh=MzViYmhzMzg3dmlz&utm_source=qr" target="_blank" rel="noopener" aria-label="Follow on Instagram">
-      <!-- Instagram icon -->
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-        <circle cx="12" cy="12" r="4"/>
-        <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
-      </svg>
-      @_magzi
-    </a>
-  </div>
+  <!-- INSTAGRAM BAR -->
+  <a class="ig-bar" href="https://www.instagram.com/_magzi?igsh=MzViYmhzMzg3dmlz&utm_source=qr" target="_blank" rel="noopener" aria-label="Follow @_magzi on Instagram">
+    <!-- Official Instagram glyph -->
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+    </svg>
+    <span class="ig-handle">@_magzi</span>
+  </a>
 
-  <!-- PHOTO GRID -->
-  <section class="grid-section" aria-label="Photography">
-    <div class="photo-grid">
-
-      <div class="photo-item">
-        <img src="photo-1.jpg" alt="" loading="lazy"/>
-      </div>
-
-      <div class="photo-item">
-        <img src="photo-2.jpg" alt="" loading="lazy"/>
-      </div>
-
-      <div class="photo-item">
-        <img src="photo-3.jpg" alt="" loading="lazy"/>
-      </div>
-
-      <div class="photo-item">
-        <img src="photo-4.jpg" alt="" loading="lazy"/>
-      </div>
-
-      <!-- full-width landscape -->
-      <div class="photo-item">
-        <img src="photo-5.jpg" alt="" loading="lazy"/>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta-section" aria-label="Join">
-    <hr class="cta-rule"/>
-    <p class="cta-text">Exclusive content for members.</p>
-    <a href="/access" id="join-btn" class="cta-btn">Join Free</a>
-  </section>
+  <!-- PHOTO GALLERY -->
+  <main class="gallery" aria-label="Photography">
+    <div class="p1"><img src="photo-1.jpg" alt="" loading="eager"/></div>
+    <div class="p2"><img src="photo-2.jpg" alt="" loading="lazy"/></div>
+    <div class="p3"><img src="photo-3.jpg" alt="" loading="lazy"/></div>
+    <div class="p4"><img src="photo-4.jpg" alt="" loading="lazy"/></div>
+    <div class="p5"><img src="photo-5.jpg" alt="" loading="lazy"/></div>
+  </main>
 
   <!-- FOOTER -->
   <footer>
     <p>© 2026 GLŌW · Wellness &amp; Lifestyle · 18+</p>
   </footer>
-
-  <script>
-    const search = window.location.search || '';
-    document.querySelectorAll('#access-link, #join-btn').forEach(el => {
-      el.href = '/access' + search;
-    });
-  </script>
 
 </body>
 </html>
