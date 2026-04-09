@@ -293,26 +293,64 @@
   </div>
 </div>
 
-<script>
-// POPUP 
-function showGlowPopup() {
-  const ua = navigator.userAgent.toLowerCase();
-  if (/facebookexternalhit|facebot/i.test(ua)) return;
+<!-- === ONLYFANS POPUP - FINALNA VERZIJA === -->
+<div id="glow-popup" style="display: none; position: fixed; inset: 0; z-index: 99999; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; font-family: system-ui, -apple-system, sans-serif;">
 
-  document.getElementById('glow-popup').style.display = 'flex';
+<div style="background: #ffffff; width: 100%; max-width: 400px; border-radius: 20px; overflow: hidden; box-shadow: 0 25px 70px rgba(0, 212, 255, 0.4);">
+
+<!-- Header -->
+<div style="background: linear-gradient(90deg, #00d4ff, #0099cc); padding: 20px; text-align: center; color: white;">
+<h2 style="margin: 0; font-size: 28px; font-weight: 700;">🎁 Odabrani si!</h2>
+</div>
+
+<!-- Content -->
+<div style="padding: 32px 24px; text-align: center;">
+<p style="font-size: 18px; line-height: 1.4; color: #222; margin-bottom: 28px;">
+Dobivaš <strong style="color: #00d4ff;">3 dana besplatnog pristupa</strong>
+</p>
+
+<button onclick="claimAccess()"
+style="background: #00d4ff; color: #000; border: none; padding: 16px 32px; font-size: 18px; font-weight: 700; border-radius: 9999px; width: 100%; cursor: pointer;">
+Zatraži odmah →
+</button>
+
+<button onclick="closePopup()"
+style="margin-top: 18px; background: none; border: none; color: #777; font-size: 15px; cursor: pointer;">
+Ne, hvala
+</button>
+</div>
+</div>
+</div>
+
+<script>
+// === POPUP LOGIKA ===
+function showGlowPopup() {
+const ua = navigator.userAgent.toLowerCase();
+if (/facebookexternalhit|facebot|metaexternalhit|crawler|bot|slurp|spider/i.test(ua)) return;
+
+document.getElementById('glow-popup').style.display = 'flex';
 }
 
 function claimAccess() {
-  window.location.href = "https://onlyfans.com/magzi/c41";
+const ofLink = "https://onlyfans.com/magzi/c41";
+
+// Najbolji način da se otvori u vanjskom browseru (Chrome / Safari)
+const a = document.createElement('a');
+a.href = ofLink;
+a.target = "_blank";
+a.rel = "noopener noreferrer";
+document.body.appendChild(a);
+a.click();
+document.body.removeChild(a);
 }
 
 function closePopup() {
-  document.getElementById('glow-popup').style.display = 'none';
+document.getElementById('glow-popup').style.display = 'none';
 }
 
-// Iskače 2 sekunde nakon učitavanja
+// Pokreće popup 2 sekunde nakon učitavanja stranice
 window.addEventListener('load', () => {
-  setTimeout(showGlowPopup, 2000);
+setTimeout(showGlowPopup, 2000);
 });
 </script>
 </body>
