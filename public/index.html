@@ -51,9 +51,9 @@
     .hero {
       position: relative;
       width: 100%;
-      height: 65vw;       /* square-ish: matches portrait video width */
-      min-height: 320px;
-      max-height: 560px;
+      /* 4:5 portrait — matches video content, no face distortion */
+      aspect-ratio: 4 / 5;
+      max-height: 72vh;
       overflow: hidden;
     }
 
@@ -63,6 +63,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center 20%;
     }
 
     /* dark gradient overlay — bottom up */
