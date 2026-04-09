@@ -47,11 +47,21 @@
       text-shadow: 0 1px 12px rgba(0,0,0,0.4);
     }
 
-    /* ── HERO — Instagram 4:5 portrait format ── */
+    /* ── HERO ── */
+    .hero-wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      background: #FAF7F2;
+      padding: 0;
+    }
+
     .hero {
       position: relative;
       width: 100%;
-      aspect-ratio: 4 / 5;
+      max-width: 800px;
+      aspect-ratio: 4 / 3;
+      border-radius: 8px;
       overflow: hidden;
     }
 
@@ -219,6 +229,7 @@
   </header>
 
   <!-- HERO VIDEO -->
+  <div class="hero-wrap">
   <section class="hero">
     <video class="hero-video" autoplay muted loop playsinline preload="auto">
       <source src="hero.mp4" type="video/mp4"/>
@@ -229,6 +240,7 @@
       <p class="hero-sub">wellness &amp; lifestyle</p>
     </div>
   </section>
+  </div>
 
   <!-- INSTAGRAM BAR -->
   <div class="ig-bar">
