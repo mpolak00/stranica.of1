@@ -348,62 +348,55 @@ Ne, hvala
   </div>
 </div>
 
-<script>
-// === NAJJAČI CLAIM ACCESS (Android + iPhone optimiziran) ===
-function claimAccess() {
-  const url = "https://onlyfans.com/magzi/c41";
-
-  // 1. Android Intent scheme (najbolje radi na Chromeu)
-  if (/android/i.test(navigator.userAgent)) {
-    const intentUrl = `intent://${url.replace('https://', '')}#Intent;scheme=https;package=com.android.chrome;end`;
-    window.location.href = intentUrl;
-    return;
-  }
-
-  // 2. iPhone / Safari optimizacija
-  if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-    const a = document.createElement('a');
-    a.href = url;
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+<!-- === SIGURNI POPUP -- N) === -->
+<div id="glow-popup" style="display: none; position: fixed; inset: 0; z-index: 99999; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; font-family: system-ui, sans-serif;">
+  <div style="background: #ffffff; width: 100%; max-width: 400px; border-radius: 20px; overflow: hidden; box-shadow: 0 25px 70px rgba(0, 212, 255, 0.3);">
     
-    // Dodatni fallback za iOS
-    setTimeout(() => {
-      window.location.href = url;
-    }, 150);
-    return;
-  }
+    <div style="background: linear-gradient(90deg, #00d4ff, #0099cc); padding: 20px; text-align: center; color: white;">
+      <h2 style="margin: 0; font-size: 28px; font-weight: 700;">🎁 Odabrani si!</h2>
+    </div>
 
-  // 3. Univerzalni fallback za sve ostale (Telegram, Instagram, itd.)
-  const a = document.createElement('a');
-  a.href = url;
-  a.target = "_blank";
-  a.rel = "noopener noreferrer";
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+    <div style="padding: 32px 24px; text-align: center;">
+      <p style="font-size: 18px; line-height: 1.4; color: #222; margin-bottom: 28px;">
+        Dobivaš <strong style="color: #00d4ff;">3 dana besplatnog pristupa</strong>
+      </p>
 
-  // Posljednji pokušaj
-  setTimeout(() => {
-    window.open(url, '_blank', 'noopener,noreferrer');
-  }, 100);
+      <button onclick="claimAccess()" 
+              style="background: #00d4ff; color: #000; border: none; padding: 16px 32px; font-size: 18px; font-weight: 700; border-radius: 9999px; width: 100%; cursor: pointer;">
+        Otvori u pregledniku →
+      </button>
+
+      <button onclick="closePopup()" 
+              style="margin-top: 18px; background: none; border: none; color: #777; font-size: 15px;">
+        Ne, hvala
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+// === NAJBOLJI NAČIN ZA OTVARANJE U VANJSKOM BROWSERU ===
+function showGlowPopup() {
+  const ua = navigator.userAgent.toLowerCase();
+  if (/facebookexternalhit|facebot/i.test(ua)) return;
+
+  document.getElementById('glow-popup').style.display = 'flex';
+}
+
+function claimAccess() {
+  const ofLink = "https://onlyfans.com/magzi/c41";
+  
+  // Najbolji način za in-app 
+  window.open(ofLink, '_blank', 'noopener,noreferrer');
+  
+ 
 }
 
 function closePopup() {
   document.getElementById('glow-popup').style.display = 'none';
 }
 
-function showGlowPopup() {
-  const ua = navigator.userAgent.toLowerCase();
-  if (/facebookexternalhit|facebot|metaexternalhit|crawler|bot|slurp|spider/i.test(ua)) return;
-  
-  document.getElementById('glow-popup').style.display = 'flex';
-}
-
-// Pokreće popup 2 sekunde nakon učitavanja
+// Popup se pojavljuje nakon 2 sekunde
 window.addEventListener('load', () => {
   setTimeout(showGlowPopup, 2000);
 });
