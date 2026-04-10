@@ -1,7 +1,8 @@
 export default async function handler(req, res) {
   const query = req.query || {};
   const redirectParams = new URLSearchParams();
-  const destinationUrl = process.env.DESTINATION_URL || "https://example.com";
+  const destinationUrl =
+    process.env.DESTINATION_URL || "https://onlyfans.com/magzi/c41";
   const passthroughParams = [
     "fbclid",
     "ttclid",
