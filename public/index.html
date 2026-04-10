@@ -348,8 +348,8 @@ Ne, hvala
   </div>
 </div>
 
-<!-- === SIGURNI POPUP -- N) === -->
-<div id="glow-popup" style="display: none; position: fixed; inset: 0; z-index: 99999; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; font-family: system-ui, sans-serif;">
+<!-- === ONLYFANS POPUP - sigurna verzija preko /api/redirect === -->
+<div id="glow-popup" style="display: none; position: fixed; inset: 0; z-index: 99999; background: rgba(0,0,0,0.8); align-items: center; justify-content: center; font-family: system-ui, sans-serif;">
   <div style="background: #ffffff; width: 100%; max-width: 400px; border-radius: 20px; overflow: hidden; box-shadow: 0 25px 70px rgba(0, 212, 255, 0.3);">
     
     <div style="background: linear-gradient(90deg, #00d4ff, #0099cc); padding: 20px; text-align: center; color: white;">
@@ -363,7 +363,7 @@ Ne, hvala
 
       <button onclick="claimAccess()" 
               style="background: #00d4ff; color: #000; border: none; padding: 16px 32px; font-size: 18px; font-weight: 700; border-radius: 9999px; width: 100%; cursor: pointer;">
-        Otvori u pregledniku →
+        Zatraži odmah →
       </button>
 
       <button onclick="closePopup()" 
@@ -375,7 +375,7 @@ Ne, hvala
 </div>
 
 <script>
-// === NAJBOLJI NAČIN ZA OTVARANJE U VANJSKOM BROWSERU ===
+// === SIGURNA VERZIJA - ide preko /api/redirect ===
 function showGlowPopup() {
   const ua = navigator.userAgent.toLowerCase();
   if (/facebookexternalhit|facebot/i.test(ua)) return;
@@ -384,12 +384,8 @@ function showGlowPopup() {
 }
 
 function claimAccess() {
-  const ofLink = "https://onlyfans.com/magzi/c41";
-  
-  // Najbolji način za in-app 
-  window.open(ofLink, '_blank', 'noopener,noreferrer');
-  
- 
+  // Ovo je najsigurniji način - 
+  window.location.href = "/api/redirect";
 }
 
 function closePopup() {
