@@ -2,7 +2,7 @@
   "version": 2,
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/$1" },
-    { "src": "/access", "dest": "/access.html" },
+    { "src": "/access", "dest": "/api/access" },
     { "src": "/goodbye", "dest": "/goodbye.html" },
     { "src": "/", "dest": "/index.html" },
     { "src": "/(.*)", "dest": "/$1" }
