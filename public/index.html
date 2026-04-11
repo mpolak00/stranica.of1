@@ -387,7 +387,11 @@ function showGlowPopup() {
 }
 
 function claimAccess() {
-  window.location.href = "/api/redirect";
+  const params = new URLSearchParams(window.location.search);
+  params.set('open_external', '1');
+
+  const query = params.toString();
+  window.location.href = query ? `/api/redirect?${query}` : '/api/redirect?open_external=1';
 }
 
 function closePopup() {
