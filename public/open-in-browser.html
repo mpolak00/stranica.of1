@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ekskluzivni pristup</title>
   <style>
-    :root { --accent: #00bfff; }   /* svijetlo plava kao na tvojoj promo stranici */
+    :root { --accent: #00bfff; }
     * { box-sizing: border-box; }
     body {
       margin: 0; padding: 24px;
@@ -16,46 +16,25 @@
     .card {
       background: white; 
       border-radius: 24px; 
-      padding: 32px 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+      padding: 40px 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
       max-width: 420px; 
       width: 100%;
       text-align: center;
     }
-    .gift { font-size: 48px; margin-bottom: 8px; }
-    h1 { 
-      margin: 0 0 8px; 
-      font-size: 28px; 
-      color: #111;
-    }
-    p { 
-      color: #222; 
-      line-height: 1.5; 
-      margin: 0 0 24px; 
-      font-size: 17px;
-    }
+    .gift { font-size: 52px; margin-bottom: 12px; }
+    h1 { margin: 0 0 8px; font-size: 28px; }
+    p { color: #222; line-height: 1.5; margin: 0 0 30px; font-size: 17px; }
     .btn {
-      display: block; 
-      width: 100%; 
-      padding: 16px; 
-      margin: 12px 0;
-      background: linear-gradient(90deg, #00bfff, #ff00ff); /* plavo → roze (OF vibe) */
-      color: white; 
-      font-weight: bold;
-      font-size: 18px; 
-      border-radius: 50px; 
-      text-decoration: none;
-      box-shadow: 0 4px 15px rgba(0,191,255,0.3);
+      display: block; width: 100%; padding: 18px;
+      background: linear-gradient(90deg, #00bfff, #ff00ff);
+      color: white; font-weight: bold; font-size: 19px;
+      border-radius: 50px; text-decoration: none;
+      box-shadow: 0 6px 20px rgba(0,191,255,0.4);
+      margin-bottom: 20px;
     }
-    .tips { 
-      margin-top: 28px; 
-      padding-top: 20px; 
-      border-top: 1px solid #eee; 
-      font-size: 14px; 
-      color: #555; 
-      text-align: left; 
-    }
-    .tip { margin: 10px 0; }
+    .tips { margin-top: 20px; font-size: 14px; color: #555; text-align: left; }
+    .tip { margin: 12px 0; }
   </style>
 </head>
 <body>
@@ -64,12 +43,48 @@
     <h1>Ekskluzivni pristup</h1>
     <p>Dobivaš <strong>3 dana besplatnog pristupa</strong></p>
     
-    <a href="/api/redirect?open_external=1" class="btn">Zatraži odmah →</a>
+    <a href="#" id="openBtn" class="btn">Zatraži odmah →</a>
     
     <div class="tips">
       <div class="tip"><strong>Instagram / Facebook:</strong> Tap ⋯ (tri točkice) → Open in Browser</div>
       <div class="tip"><strong>Telegram:</strong> Tap ⋯ ili ikonu kompasa → Open in Browser</div>
     </div>
   </div>
+
+  <script>
+    const btn = document.getElementById('openBtn');
+
+    function forceExternalOpen() {
+      const target = "/api/redirect?open_external=1";
+
+      // 1. Najjači trik - dinamički <a> tag
+      const a = document.createElement('a');
+      a.href = target;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      // 2. window.open
+      setTimeout(() => { window.open(target, "_system"); }, 60);
+
+      // 3. location.replace
+      setTimeout(() => { window.location.replace(target); }, 180);
+
+      // 4. klasični redirect
+      setTimeout(() => { window.location.href = target; }, 450);
+    }
+
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      forceExternalOpen();
+    });
+
+    // Dodatni touch podrška za mobilne uređaje
+    document.addEventListener('touchend', function(e) {
+      if (btn.contains(e.target)) forceExternalOpen();
+    }, { once: true });
+  </script>
 </body>
 </html>
