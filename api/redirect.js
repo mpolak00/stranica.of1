@@ -1,5 +1,5 @@
 export default function handler(req, res) {
-  const dest = process.env.DESTINATION_URL;
+  const dest = process.env.DESTINATION_URL || process.env.OF_URL;
 
   if (!dest) {
     return res.status(500).send('No destination configured');
