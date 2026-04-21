@@ -1,42 +1,32 @@
 export default function handler(req, res) {
-  const ua = String(req.headers["user-agent"] || "");
-  const host = req.headers.host;
-  const proto = req.headers["x-forwarded-proto"] || "https";
+  const dest = process.env.DESTINATION_URL;
 
-  // Detekcija in-app browsera
-  const isMeta = /FBAN|FBAV|FB_IAB|Messenger/i.test(ua);
-  const isInstagram = /Instagram/i.test(ua);
-  const isTelegram = /Telegram/i.test(ua);
-  const isInApp = isMeta || isInstagram || isTelegram;
+  if (!dest) {
+    return res.status(500).send('No destination configured');
+  }
 
-  // Tvoj OnlyFans link iz Vercel env
-  const destination = process.env.OF_URL || "https://onlyfans.com/magzi/c41";
-  const url = new URL(destination);
+  const url = new URL(dest);
+  const trackingKeys = [
+    'utm_source',
+    'utm_medium',
+    'utm_campaign',
+    'utm_content',
+    'utm_term',
+    'fbclid',
+    'ttclid',
+    'ad_id',
+    'adset_id',
+    'campaign_id'
+  ];
+  const inbound = new URL(req.url, 'https://x');
 
-  // Proslijedi sve parametre (fbclid, utm, event_id...)
-  const incoming = req.query || {};
-  Object.entries(incoming).forEach(([key, value]) => {
-    if (key === "open_external") return;
-    if (Array.isArray(value)) {
-      value.forEach(v => url.searchParams.append(key, v));
-    } else if (value !== undefined && value !== null) {
-      url.searchParams.set(key, String(value));
+  trackingKeys.forEach(key => {
+    const value = inbound.searchParams.get(key);
+    if (value) {
+      url.searchParams.set(key, value);
     }
   });
 
-  // Ako je in-app browser → pošalji na fallback stranicu
-  if (isInApp && !("open_external" in incoming)) {
-    const fallback = new URL(`${proto}://${host}/open-in-browser.html`);
-    Object.entries(incoming).forEach(([key, value]) => {
-      if (Array.isArray(value)) {
-        value.forEach(v => fallback.searchParams.append(key, v));
-      } else if (value !== undefined && value !== null) {
-        fallback.searchParams.set(key, String(value));
-      }
-    });
-    return res.redirect(302, fallback.toString());
-  }
-
-  // Normalni browser → direktno na OnlyFans
+  res.setHeader('Cache-Control', 'no-store, no-cache');
   return res.redirect(302, url.toString());
 }
