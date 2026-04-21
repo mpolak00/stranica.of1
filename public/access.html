@@ -100,7 +100,7 @@
 
     .hero {
       text-align: center;
-      margin-bottom: 48px;
+      margin-bottom: 40px;
     }
 
     .eyebrow {
@@ -129,50 +129,135 @@
       margin: 0 auto;
     }
 
+    .urgency-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: rgba(201, 150, 90, 0.08);
+      border: 1px solid rgba(201, 150, 90, 0.2);
+      border-radius: 9999px;
+      padding: 10px 24px;
+      margin: 0 auto 32px auto;
+      max-width: 420px;
+      width: fit-content;
+    }
+
+    .urgency-dot {
+      width: 8px;
+      height: 8px;
+      background: #c9965a;
+      border-radius: 50%;
+      display: inline-block;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    .urgency-text {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 300;
+      color: #e8bf8f;
+    }
+
     .locked-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 3px;
-      width: 100%;
-      margin-top: 36px;
+      background: #0c0b09;
+      margin-top: 40px;
     }
 
-    .locked-card {
+    .locked-item {
       position: relative;
+      overflow: hidden;
+      aspect-ratio: 3 / 4;
+      cursor: pointer;
+    }
+
+    .locked-item img {
       width: 100%;
-      aspect-ratio: 3/4;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: blur(12px) brightness(0.6);
+      transform: scale(1.08);
+      transition: filter 0.3s ease;
+    }
+
+    .locked-item:hover img {
+      filter: blur(8px) brightness(0.7);
+    }
+
+    .locked-overlay {
+      position: absolute;
+      inset: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      border: 1px solid var(--border);
-      overflow: hidden;
+      z-index: 2;
+      background: linear-gradient(180deg, rgba(12,11,9,0.08), rgba(12,11,9,0.42));
     }
 
-    .locked-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(12,11,9,0.05), rgba(12,11,9,0.35));
-    }
-
-    .lock,
-    .lock-label {
-      position: relative;
-      z-index: 1;
-    }
-
-    .lock {
-      font-size: 2rem;
-      opacity: 0.6;
+    .lock-icon {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
     }
 
     .lock-label {
-      color: var(--text-muted);
-      font-size: 9px;
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 10px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
+      color: rgba(245, 239, 230, 0.7);
+    }
+
+    .locked-item--cta {
+      background: #13100c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: default;
+    }
+
+    .locked-cta-card {
+      text-align: center;
+      padding: 24px 16px;
+    }
+
+    .lock-icon-big {
+      font-size: 2.4rem;
+      margin-bottom: 12px;
+    }
+
+    .locked-cta-text {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1rem;
+      color: #f5efe6;
+      line-height: 1.4;
+      margin-bottom: 20px;
+    }
+
+    .cta-btn,
+    .cta-redirect,
+    .sticky-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    .cta-btn,
+    .sticky-btn {
+      padding: 12px 20px;
+      border: 1px solid var(--accent);
+      background: transparent;
+      color: var(--accent);
+      font-family: var(--font-body);
+      font-weight: 500;
     }
 
     .conversion {
@@ -183,20 +268,11 @@
       text-align: center;
     }
 
-    .urgency {
+    .conversion .urgency {
       color: var(--accent-light);
       font-size: 13px;
       font-weight: 400;
       letter-spacing: 0.03em;
-    }
-
-    .cta-redirect,
-    .sticky-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      cursor: pointer;
     }
 
     .cta-redirect {
@@ -318,11 +394,9 @@
       font-size: 0.95rem;
     }
 
-    .sticky-btn {
-      padding: 11px 18px;
-      border: 1px solid var(--accent);
-      background: transparent;
-      color: var(--accent);
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
     }
 
     @media (max-width: 768px) {
@@ -342,7 +416,7 @@
 
     @media (max-width: 480px) {
       .locked-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .sticky-inner {
@@ -368,20 +442,59 @@
       <p class='subtext'>Pristupite privatnoj kolekciji. Samo za članove.</p>
     </section>
 
-    <section>
-      <div class='locked-grid' aria-label='Members only preview'>
-        <div class='locked-card' style='background: linear-gradient(160deg, #2a1a10 0%, #1a1015 100%);'><!-- REPLACE with <img src="exclusive-1.jpg" alt="Exclusive content" loading="lazy"> --><div class='lock'>🔒</div><div class='lock-label'>Members Only</div></div>
-        <div class='locked-card' style='background: linear-gradient(145deg, #24160f 0%, #160f14 100%);'><!-- REPLACE with <img src="exclusive-2.jpg" alt="Exclusive content" loading="lazy"> --><div class='lock'>🔒</div><div class='lock-label'>Members Only</div></div>
-        <div class='locked-card' style='background: linear-gradient(180deg, #2a1b14 0%, #171013 100%);'><!-- REPLACE with <img src="exclusive-3.jpg" alt="Exclusive content" loading="lazy"> --><div class='lock'>🔒</div><div class='lock-label'>Members Only</div></div>
-        <div class='locked-card' style='background: linear-gradient(150deg, #28170e 0%, #171116 100%);'><!-- REPLACE with <img src="exclusive-4.jpg" alt="Exclusive content" loading="lazy"> --><div class='lock'>🔒</div><div class='lock-label'>Members Only</div></div>
-        <div class='locked-card' style='background: linear-gradient(170deg, #291a11 0%, #1a1015 100%);'><!-- REPLACE with <img src="exclusive-5.jpg" alt="Exclusive content" loading="lazy"> --><div class='lock'>🔒</div><div class='lock-label'>Members Only</div></div>
-        <div class='locked-card' style='background: linear-gradient(140deg, #26170f 0%, #181117 100%);'><!-- REPLACE with <img src="exclusive-6.jpg" alt="Exclusive content" loading="lazy"> --><div class='lock'>🔒</div><div class='lock-label'>Members Only</div></div>
-      </div>
+    <div class='urgency-bar'>
+      <span class='urgency-dot'></span>
+      <span class='urgency-text'>🔥 <strong>23 osobe</strong> pridružile su se danas · Ostalo mjesta: <strong id='spots-counter'>8</strong></span>
+    </div>
 
-      <div class='conversion'>
-        <div class='urgency'>Slobodnih mjesta danas: <span id='spots-count'>9</span></div>
-        <button type='button' class='cta-redirect'>OTKLJUČAJ PRISTUP →</button>
+    <section class='locked-grid'>
+      <div class='locked-item'>
+        <img src='/photo-1.jpg' alt='' loading='lazy'>
+        <div class='locked-overlay'>
+          <div class='lock-icon'>🔒</div>
+          <span class='lock-label'>Members Only</span>
+        </div>
       </div>
+      <div class='locked-item'>
+        <img src='/photo-2.jpg' alt='' loading='lazy'>
+        <div class='locked-overlay'>
+          <div class='lock-icon'>🔒</div>
+          <span class='lock-label'>Members Only</span>
+        </div>
+      </div>
+      <div class='locked-item'>
+        <img src='/photo-3.jpg' alt='' loading='lazy'>
+        <div class='locked-overlay'>
+          <div class='lock-icon'>🔒</div>
+          <span class='lock-label'>Members Only</span>
+        </div>
+      </div>
+      <div class='locked-item'>
+        <img src='/photo-4.jpg' alt='' loading='lazy'>
+        <div class='locked-overlay'>
+          <div class='lock-icon'>🔒</div>
+          <span class='lock-label'>Members Only</span>
+        </div>
+      </div>
+      <div class='locked-item'>
+        <img src='/photo-5.jpg' alt='' loading='lazy'>
+        <div class='locked-overlay'>
+          <div class='lock-icon'>🔒</div>
+          <span class='lock-label'>Members Only</span>
+        </div>
+      </div>
+      <div class='locked-item locked-item--cta'>
+        <div class='locked-cta-card'>
+          <div class='lock-icon-big'>🔒</div>
+          <p class='locked-cta-text'>Još 47 ekskluzivnih objava čeka te</p>
+          <button type='button' class='cta-btn locked-grid-cta'>Otključaj pristup →</button>
+        </div>
+      </div>
+    </section>
+
+    <section class='conversion'>
+      <div class='urgency'>Slobodnih mjesta danas: <span id='spots-count'>8</span></div>
+      <button type='button' class='cta-redirect'>OTKLJUČAJ PRISTUP →</button>
     </section>
   </main>
 
@@ -390,7 +503,7 @@
       <div class='badge'>✨ OGRANIČENA PONUDA</div>
       <h2>Odabrani si.</h2>
       <p class='popup-copy'>Dobij 3 dana besplatnog pristupa Magzinom privatnom sadržaju.</p>
-      <div class='popup-urgency'>⏳ Preostalo mjesta: <span id='popup-spots'>9</span></div>
+      <div class='popup-urgency'>⏳ Preostalo mjesta: <span id='popup-spots'>8</span></div>
       <button type='button' class='cta-redirect'>ZATRAŽI PRISTUP →</button>
       <button type='button' class='dismiss' id='popup-dismiss'>Ne, hvala</button>
     </div>
@@ -404,13 +517,6 @@
   </div>
 
   <script>
-    const META_PIXEL_ID = 'YOUR_META_PIXEL_ID';
-    const TIKTOK_PIXEL_ID = 'YOUR_TIKTOK_PIXEL_ID';
-
-    fbq('init', META_PIXEL_ID);
-    ttq.load(TIKTOK_PIXEL_ID);
-    ttq.page();
-
     const params = new URLSearchParams(window.location.search);
     const tracking = {
       fbclid: params.get('fbclid') || '',
@@ -437,20 +543,51 @@
       }).catch(() => {});
     }
 
+    function loadPixelConfig() {
+      return fetch('/api/pixels', { cache: 'no-store' })
+        .then(response => response.ok ? response.json() : {})
+        .catch(() => ({}));
+    }
+
+    (function() {
+      const eventId = genId('vc');
+      sendCapi('ViewContent', eventId);
+      loadPixelConfig().then(config => {
+        if (config.metaPixelId && typeof fbq !== 'undefined') {
+          fbq('init', config.metaPixelId);
+          fbq('track', 'ViewContent', { content_name: 'Magzi Access' }, { eventID: eventId });
+        }
+        if (config.tiktokPixelId && typeof ttq !== 'undefined') {
+          ttq.load(config.tiktokPixelId);
+          ttq.page();
+          ttq.track('ViewContent');
+        }
+      });
+    })();
+
     const overlay = document.getElementById('popup-overlay');
     const dismiss = document.getElementById('popup-dismiss');
     const stickyBar = document.getElementById('sticky-bar');
     const stickyTrigger = document.getElementById('sticky-trigger');
-    const spotCount = String(Math.floor(Math.random() * 7) + 7);
-    const spotsNode = document.getElementById('spots-count');
-    const popupSpotsNode = document.getElementById('popup-spots');
+    const spotsEls = [
+      document.getElementById('spots-counter'),
+      document.getElementById('spots-count'),
+      document.getElementById('popup-spots')
+    ].filter(Boolean);
+    let spots = 8;
     let popupShown = false;
     let leadSent = false;
 
-    spotsNode.textContent = spotCount;
-    popupSpotsNode.textContent = spotCount;
+    function syncSpots() {
+      spotsEls.forEach(el => {
+        el.textContent = String(spots);
+      });
+    }
 
     function showPopup() {
+      if (overlay.classList.contains('visible')) {
+        return;
+      }
       popupShown = true;
       overlay.classList.add('visible');
       overlay.setAttribute('aria-hidden', 'false');
@@ -461,10 +598,18 @@
         leadSent = true;
         const leadId = genId('lead');
         if (typeof fbq !== 'undefined') {
-          fbq('track', 'Lead', {}, { eventID: leadId });
+          loadPixelConfig().then(config => {
+            if (config.metaPixelId) {
+              fbq('track', 'Lead', {}, { eventID: leadId });
+            }
+          });
         }
         if (typeof ttq !== 'undefined') {
-          ttq.track('SubmitForm');
+          loadPixelConfig().then(config => {
+            if (config.tiktokPixelId) {
+              ttq.track('SubmitForm');
+            }
+          });
         }
         sendCapi('Lead', leadId);
       }
@@ -490,23 +635,45 @@
       window.location.href = '/api/redirect' + qs;
     }
 
-    window.setTimeout(() => {
-      if (!popupShown) showPopup();
-    }, 1000);
+    syncSpots();
+
+    setInterval(function() {
+      if (spots > 2) {
+        spots--;
+        syncSpots();
+      }
+    }, 90000);
+
+    setTimeout(function() { showPopup(); }, 3000);
 
     dismiss.addEventListener('click', hidePopup);
-    overlay.addEventListener('click', e => {
-      if (e.target === overlay) hidePopup();
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) {
+        hidePopup();
+      }
     });
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') hidePopup();
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        hidePopup();
+      }
     });
 
     stickyTrigger.addEventListener('click', showPopup);
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
-    document.querySelectorAll('.cta-redirect').forEach(btn => {
+    document.querySelectorAll('.locked-item:not(.locked-item--cta)').forEach(function(item) {
+      item.addEventListener('click', function() {
+        showPopup();
+      });
+    });
+
+    document.querySelector('.locked-grid-cta').addEventListener('click', function(e) {
+      e.preventDefault();
+      showPopup();
+    });
+
+    document.querySelectorAll('.cta-redirect').forEach(function(btn) {
       btn.addEventListener('click', goToRedirect);
     });
   </script>
