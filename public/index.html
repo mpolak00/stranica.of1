@@ -1,407 +1,534 @@
 <!doctype html>
-<html lang="en">
+<html lang='hr'>
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <meta name="robots" content="index, follow"/>
-  <title>GLŌW — Magdalena</title>
-  <meta name="description" content="Magdalena — wellness & lifestyle."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta name='robots' content='index, follow'>
+  <title>Magzi · Lifestyle & Content</title>
+  <meta name='description' content='Ekskluzivni sadržaj. Svaki dan. Direktno od Magzi.'>
+  <link rel='preconnect' href='https://fonts.googleapis.com'>
+  <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+  <link href='https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500&display=swap' rel='stylesheet'>
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  </script>
+  <script>
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject = t;
+      var ttq = w[t] = w[t] || [];
+      ttq.methods = ["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"];
+      ttq.setAndDefer = function(target, method) {
+        target[method] = function() {
+          target.push([method].concat(Array.prototype.slice.call(arguments, 0)));
+        };
+      };
+      for (var i = 0; i < ttq.methods.length; i += 1) ttq.setAndDefer(ttq, ttq.methods[i]);
+      ttq.instance = function(id) {
+        var instance = ttq._i[id] || [];
+        for (var j = 0; j < ttq.methods.length; j += 1) ttq.setAndDefer(instance, ttq.methods[j]);
+        return instance;
+      };
+      ttq.load = function(id, opts) {
+        var src = "https://analytics.tiktok.com/i18n/pixel/events.js";
+        ttq._i = ttq._i || {};
+        ttq._i[id] = [];
+        ttq._i[id]._u = src;
+        ttq._t = ttq._t || {};
+        ttq._t[id] = +new Date();
+        ttq._o = ttq._o || {};
+        ttq._o[id] = opts || {};
+        var script = d.createElement("script");
+        script.type = "text/javascript";
+        script.async = !0;
+        script.src = src + "?sdkid=" + id + "&lib=" + t;
+        var first = d.getElementsByTagName("script")[0];
+        first.parentNode.insertBefore(script, first);
+      };
+    }(window, document, "ttq");
+  </script>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html {
-      scroll-behavior: smooth;
-      overflow-x: hidden;
+    :root {
+      --bg: #0c0b09;
+      --bg-warm: #13100c;
+      --text: #f5efe6;
+      --text-muted: #9a8e80;
+      --accent: #c9965a;
+      --accent-light: #e8bf8f;
+      --border: rgba(201,150,90,0.15);
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
     }
 
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      background: #FAF7F2;
-      color: #1C1C1C;
-      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       -webkit-text-size-adjust: 100%;
     }
 
     a { color: inherit; text-decoration: none; }
-    img, video { display: block; }
+    button { font: inherit; }
 
-    /* ── NAVBAR ── */
-    .navbar {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      z-index: 20;
-      padding: 20px 24px;
-    }
-
-    .navbar-brand {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-weight: 400;
-      font-size: 20px;
-      letter-spacing: 0.06em;
-      color: #ffffff;
-      text-shadow: 0 1px 12px rgba(0,0,0,0.4);
-    }
-
-    /* ── HERO ── */
-    .hero-wrap {
-      width: 100%;
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: 56px;
       display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      background: rgba(12,11,9,0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .wordmark {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--accent);
+      letter-spacing: 0.03em;
+    }
+
+    .nav-btn,
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
       justify-content: center;
-      background: #FAF7F2;
-      padding: 0;
+      border-radius: 9999px;
+      border: 1.5px solid var(--accent);
+      background: transparent;
+      color: var(--accent);
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-btn {
+      padding: 9px 22px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .cta-btn {
+      padding: 13px 38px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .nav-btn:hover,
+    .cta-btn:hover {
+      background: var(--accent);
+      color: #000;
+      transform: translateY(-1px);
     }
 
     .hero {
       position: relative;
-      width: 100%;
-      max-width: 600px;
-      aspect-ratio: 1 / 1;
-      border-radius: 8px;
+      height: 100dvh;
       overflow: hidden;
+      background: var(--bg);
     }
 
-    .hero-video {
+    .hero video {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 25%;
+      z-index: 0;
     }
 
-    /* dark gradient overlay — bottom up */
-    .hero-overlay {
+    .hero::after {
+      content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(0,0,0,0.62) 0%,
-        rgba(0,0,0,0.18) 45%,
-        transparent 70%
-      );
+      z-index: 1;
+      background: linear-gradient(160deg, rgba(12,11,9,0.15) 0%, rgba(12,11,9,0.65) 55%, rgba(12,11,9,0.97) 100%);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: flex-end;
+      min-height: 100%;
+      padding: 0 48px 90px;
     }
 
     .hero-copy {
-      position: absolute;
-      bottom: 20%;
-      left: 0; right: 0;
-      text-align: center;
-      padding: 0 20px;
+      max-width: 520px;
     }
 
-    .hero-name {
-      font-family: 'Playfair Display', serif;
+    .hero-label {
+      margin-bottom: 18px;
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
       font-style: italic;
       font-weight: 400;
-      font-size: clamp(40px, 10vw, 80px);
-      color: #ffffff;
-      line-height: 1.05;
-      letter-spacing: -0.01em;
+      font-size: clamp(3.8rem, 9vw, 7.5rem);
+      line-height: 0.88;
+      color: var(--text);
     }
 
-    .hero-sub {
-      margin-top: 14px;
-      font-family: 'Inter', sans-serif;
-      font-size: 13px;
-      font-weight: 400;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.85);
+    .hero-title span {
+      display: block;
+      padding-left: 1.8rem;
     }
 
-    /* ── INSTAGRAM BAR ── */
-    .ig-bar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 18px 16px;
-      background: #FAF7F2;
-      border-bottom: 1px solid #E8D5C4;
-      -webkit-tap-highlight-color: transparent;
+    .hero-text {
+      max-width: 340px;
+      margin-top: 20px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.6;
     }
 
-    .ig-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      padding: 0 28px;
-      height: 46px;
-      border-radius: 50px;
-      border: none;
-      background: linear-gradient(90deg, #f9a844 0%, #e1306c 50%, #833ab4 100%);
-      color: #ffffff;
-      font-family: 'Inter', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-      cursor: pointer;
-      transition: opacity 0.18s, transform 0.18s;
-      -webkit-tap-highlight-color: transparent;
-      white-space: nowrap;
+    .hero-note,
+    .final-note {
+      margin-top: 12px;
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 300;
     }
 
-    .ig-btn:hover  { opacity: 0.88; }
-    .ig-btn:active { transform: scale(0.96); opacity: 0.88; }
-
-    .ig-btn svg {
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
+    .hero-actions {
+      margin-top: 32px;
     }
 
-    /* ── GALLERY ── */
-    .gallery {
+    .scroll-indicator {
+      position: absolute;
+      left: 50%;
+      bottom: 24px;
+      z-index: 2;
+      transform: translateX(-50%);
+      color: var(--accent);
+      font-size: 1.2rem;
+      animation: bounce 2s infinite;
+    }
+
+    .photo-grid {
       display: grid;
       gap: 3px;
+      background: var(--bg);
     }
 
-    .gallery img {
+    .photo-card {
+      overflow: hidden;
+      background: var(--bg-warm);
+    }
+
+    .photo-card img {
       width: 100%;
-      height: 100%;
+      aspect-ratio: 3 / 4;
       object-fit: cover;
       display: block;
+      transition: transform 0.4s ease, filter 0.4s ease;
     }
 
-    /* ── MOBILE (< 768px): 2-col edge-to-edge, sve portrait ── */
-    @media (max-width: 767px) {
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .gallery .p1,
-      .gallery .p2,
-      .gallery .p3,
-      .gallery .p4,
-      .gallery .p5 {
-        aspect-ratio: 4 / 5;
-      }
-
-      /* photo-5 peta slika — sama u redu, span full width */
-      .gallery .p5 {
-        grid-column: 1 / -1;
-        aspect-ratio: 16 / 9;
-      }
+    .photo-card:hover img {
+      filter: brightness(1.09);
+      transform: scale(1.01);
     }
 
-    /* ── DESKTOP (>= 768px): 3-col uniformni grid ── */
-    @media (min-width: 768px) {
-      .gallery {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .gallery .p1,
-      .gallery .p2,
-      .gallery .p3,
-      .gallery .p4,
-      .gallery .p5 {
-        aspect-ratio: 4 / 5;
-      }
-
-      /* photo-3 i photo-5 full width radi ritma */
-      .gallery .p3 {
-        grid-column: 1 / -1;
-        aspect-ratio: 21 / 9;
-      }
+    .numbers-bar {
+      background: var(--bg-warm);
+      padding: 72px 24px;
     }
 
-    /* ── FOOTER ── */
-    footer {
-      padding: 32px 16px;
+    .numbers-inner {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 28px;
+    }
+
+    .stat {
       text-align: center;
-      border-top: 1px solid #E8D5C4;
-      font-family: 'Inter', sans-serif;
-      font-size: 12px;
-      color: #888888;
-      letter-spacing: 0.03em;
+      min-width: 160px;
+    }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      color: var(--accent-light);
+    }
+
+    .stat-label {
+      margin-top: 6px;
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .stat-sep {
+      width: 1px;
+      align-self: stretch;
+      background: var(--border);
+    }
+
+    .testimonials {
+      background: var(--bg);
+      padding: 110px 24px;
+    }
+
+    .quotes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 40px;
+      max-width: 1120px;
+      margin: 0 auto;
+      justify-items: center;
+    }
+
+    .quote-card {
+      width: 100%;
+      max-width: 300px;
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+    }
+
+    .quote-card blockquote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.15rem;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    .quote-meta {
+      margin-top: 16px;
+      color: var(--text-muted);
+      font-size: 10px;
+      font-weight: 300;
+    }
+
+    .final-cta {
+      background: var(--bg);
+      padding: 140px 24px;
+      text-align: center;
+    }
+
+    .final-line {
+      width: 32px;
+      height: 1px;
+      margin: 0 auto 52px;
+      background: var(--accent);
+    }
+
+    .final-cta h2 {
+      max-width: 600px;
+      margin: 0 auto 48px;
+      color: var(--text);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      line-height: 1.1;
+    }
+
+    .site-footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 300;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+
+    @media (min-width: 600px) {
+      .photo-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 1024px) {
+      .photo-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 1023px) {
+      .quotes-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 767px) {
+      .site-nav { padding: 0 16px; }
+      .hero-inner { padding: 0 20px 64px; }
+      .hero-title span { padding-left: 1rem; }
+      .scroll-indicator { display: none; }
+    }
+
+    @media (max-width: 699px) {
+      .stat-sep { display: none; }
     }
   </style>
 </head>
 <body>
-
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <span class="navbar-brand">GLŌW</span>
+  <header class='site-nav'>
+    <div class='wordmark'>Magzi</div>
+    <button type='button' class='nav-btn' onclick='fireOutboundAndRedirect()'>Join Free</button>
   </header>
 
-  <!-- HERO VIDEO -->
-  <div class="hero-wrap">
-  <section class="hero">
-    <video class="hero-video" autoplay muted loop playsinline preload="auto">
-      <source src="hero.mp4" type="video/mp4"/>
+  <section class='hero'>
+    <video autoplay muted loop playsinline>
+      <source src='/hero.mp4' type='video/mp4'>
     </video>
-    <div class="hero-overlay"></div>
-    <div class="hero-copy">
-      <h1 class="hero-name">Magdalena</h1>
-      <p class="hero-sub">wellness &amp; lifestyle</p>
+    <div class='hero-inner'>
+      <div class='hero-copy'>
+        <div class='hero-label'>MAGZI · LIFESTYLE</div>
+        <h1 class='hero-title'>Unfiltered.<span>Unapologetic.</span></h1>
+        <p class='hero-text'>Iza kamera. Bez filtera. Samo Magzi.</p>
+        <div class='hero-actions'>
+          <a href='/api/redirect' class='cta-btn'>PRISTUPI SADRŽAJU</a>
+          <div class='hero-note'>Besplatan 3-dnevni pristup · 18+</div>
+        </div>
+      </div>
+    </div>
+    <div class='scroll-indicator' aria-hidden='true'>↓</div>
+  </section>
+
+  <section class='photo-grid' aria-label='Magzi gallery'>
+    <div class='photo-card'><img src='/photo-1.jpg' alt='' loading='lazy'></div>
+    <div class='photo-card'><img src='/photo-2.jpg' alt='' loading='lazy'></div>
+    <div class='photo-card'><img src='/photo-3.jpg' alt='' loading='lazy'></div>
+    <div class='photo-card'><img src='/photo-4.jpg' alt='' loading='lazy'></div>
+    <div class='photo-card'><img src='/photo-5.jpg' alt='' loading='lazy'></div>
+  </section>
+
+  <section class='numbers-bar'>
+    <div class='numbers-inner'>
+      <div class='stat'>
+        <div class='stat-value'>25K</div>
+        <div class='stat-label'>INSTAGRAM PRATITELJA</div>
+      </div>
+      <div class='stat-sep' aria-hidden='true'></div>
+      <div class='stat'>
+        <div class='stat-value'>194</div>
+        <div class='stat-label'>OBJAVA</div>
+      </div>
+      <div class='stat-sep' aria-hidden='true'></div>
+      <div class='stat'>
+        <div class='stat-value'>🏝</div>
+        <div class='stat-label'>LIFESTYLE · TRAVEL · BODY</div>
+      </div>
     </div>
   </section>
-  </div>
 
-  <!-- INSTAGRAM BAR -->
-  <div class="ig-bar">
-    <a class="ig-btn" href="https://www.instagram.com/_magzi?igsh=MzViYmhzMzg3dmlz&utm_source=qr" target="_blank" rel="noopener" aria-label="Follow on Instagram">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-      </svg>
-      Instagram
-    </a>
-  </div>
-
-  <!-- PHOTO GALLERY -->
-  <main class="gallery" aria-label="Photography">
-    <div class="p1"><img src="photo-1.jpg" alt="" loading="eager"/></div>
-    <div class="p2"><img src="photo-2.jpg" alt="" loading="lazy"/></div>
-    <div class="p3"><img src="photo-3.jpg" alt="" loading="lazy"/></div>
-    <div class="p4"><img src="photo-4.jpg" alt="" loading="lazy"/></div>
-    <div class="p5"><img src="photo-5.jpg" alt="" loading="lazy"/></div>
-  </main>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2026 GLŌW · Wellness &amp; Lifestyle · 18+</p>
-  </footer>
-<!-- === ONLYFANS POPUP - sakriven od Meta crawlera === -->
-<div id="glow-popup" style="display: none; position: fixed; inset: 0; z-index: 99999; background: rgba(0,0,0,0.8); align-items: center; justify-content: center; font-family: system-ui, sans-serif;">
-  <div style="background: #ffffff; width: 100%; max-width: 400px; border-radius: 20px; overflow: hidden; box-shadow: 0 25px 70px rgba(0, 212, 255, 0.3);">
-    
-    <div style="background: linear-gradient(90deg, #00d4ff, #0099cc); padding: 20px; text-align: center; color: white;">
-      <h2 style="margin: 0; font-size: 28px; font-weight: 700;">🎁 Odabrani si!</h2>
+  <section class='testimonials'>
+    <div class='quotes-grid'>
+      <article class='quote-card'>
+        <blockquote>“Konačno nešto autentično. Nisam mogla prestati gledati.”</blockquote>
+        <div class='quote-meta'>— Verified member</div>
+      </article>
+      <article class='quote-card'>
+        <blockquote>“Magzi je drugačija. Pravi sadržaj, bez pretvaranja.”</blockquote>
+        <div class='quote-meta'>— Verified member</div>
+      </article>
+      <article class='quote-card'>
+        <blockquote>“Vrijedi svakog centa. Svaki dan nešto novo.”</blockquote>
+        <div class='quote-meta'>— Verified member</div>
+      </article>
     </div>
+  </section>
 
-    <div style="padding: 32px 24px; text-align: center;">
-      <p style="font-size: 18px; line-height: 1.4; color: #222; margin-bottom: 28px;">
-        Dobivaš <strong style="color: #00d4ff;">3 dana besplatnog pristupa</strong>
-      </p>
+  <section class='final-cta'>
+    <div class='final-line'></div>
+    <h2>Svaki dan. Direktno. Samo za članove.</h2>
+    <a href='/api/redirect' class='cta-btn'>PRISTUPI SADRŽAJU</a>
+    <div class='final-note'>Mjesta su ograničena.</div>
+  </section>
 
-      <button onclick="claimAccess()" 
-              style="background: #00d4ff; color: #000; border: none; padding: 16px 32px; font-size: 18px; font-weight: 700; border-radius: 9999px; width: 100%; cursor: pointer;">
-        Zatraži odmah →
-      </button>
+  <footer class='site-footer'>© 2026 Magzi · Lifestyle & Content · 18+ · Sva prava pridržana</footer>
 
-      <button onclick="closePopup()" 
-              style="margin-top: 18px; background: none; border: none; color: #777; font-size: 15px;">
-        Ne, hvala
-      </button>
-    </div>
-  </div>
-</div>
+  <script>
+    const META_PIXEL_ID = 'YOUR_META_PIXEL_ID';
+    const TIKTOK_PIXEL_ID = 'YOUR_TIKTOK_PIXEL_ID';
 
-<!-- === ONLYFANS POPUP - FINALNA VERZIJA === -->
-<div id="glow-popup" style="display: none; position: fixed; inset: 0; z-index: 99999; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; font-family: system-ui, -apple-system, sans-serif;">
+    fbq('init', META_PIXEL_ID);
+    ttq.load(TIKTOK_PIXEL_ID);
+    ttq.page();
 
-<div style="background: #ffffff; width: 100%; max-width: 400px; border-radius: 20px; overflow: hidden; box-shadow: 0 25px 70px rgba(0, 212, 255, 0.4);">
+    const params = new URLSearchParams(window.location.search);
+    const tracking = {
+      fbclid: params.get('fbclid') || '',
+      ttclid: params.get('ttclid') || '',
+      utm_source: params.get('utm_source') || '',
+      utm_medium: params.get('utm_medium') || '',
+      utm_campaign: params.get('utm_campaign') || '',
+      utm_content: params.get('utm_content') || '',
+      utm_term: params.get('utm_term') || '',
+      ad_id: params.get('ad_id') || '',
+      adset_id: params.get('adset_id') || '',
+      campaign_id: params.get('campaign_id') || ''
+    };
 
-<!-- Header -->
-<div style="background: linear-gradient(90deg, #00d4ff, #0099cc); padding: 20px; text-align: center; color: white;">
-<h2 style="margin: 0; font-size: 28px; font-weight: 700;">🎁 Odabrani si!</h2>
-</div>
+    function genId(prefix) {
+      return prefix + '_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
+    }
 
-<!-- Content -->
-<div style="padding: 32px 24px; text-align: center;">
-<p style="font-size: 18px; line-height: 1.4; color: #222; margin-bottom: 28px;">
-Dobivaš <strong style="color: #00d4ff;">3 dana besplatnog pristupa</strong>
-</p>
+    function sendCapi(event, eventId) {
+      fetch('/api/capi', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ event, event_id: eventId, ...tracking })
+      }).catch(() => {});
+    }
 
-<button onclick="claimAccess()"
-style="background: #00d4ff; color: #000; border: none; padding: 16px 32px; font-size: 18px; font-weight: 700; border-radius: 9999px; width: 100%; cursor: pointer;">
-Zatraži odmah →
-</button>
+    const pageViewId = genId('pageview');
+    fbq('track', 'PageView', {}, { eventID: pageViewId });
+    sendCapi('PageView', pageViewId);
 
-<button onclick="closePopup()"
-style="margin-top: 18px; background: none; border: none; color: #777; font-size: 15px; cursor: pointer;">
-Ne, hvala
-</button>
-</div>
-</div>
-</div>
+    const viewContentId = genId('viewcontent');
+    fbq('track', 'ViewContent', { content_name: 'Magzi Landing' }, { eventID: viewContentId });
+    ttq.track('ViewContent');
+    sendCapi('ViewContent', viewContentId);
 
-<!-- === ONLYFANS POPUP - NAJJAČA VERZIJA 2026 (Android + iPhone) === -->
-<div id="glow-popup" style="display: none; position: fixed; inset: 0; z-index: 99999; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; font-family: system-ui, sans-serif;">
-  <div style="background: #ffffff; width: 100%; max-width: 400px; border-radius: 20px; overflow: hidden; box-shadow: 0 30px 80px rgba(0, 212, 255, 0.5);">
-    
-    <div style="background: linear-gradient(90deg, #00d4ff, #0099cc); padding: 22px; text-align: center; color: white;">
-      <h2 style="margin: 0; font-size: 29px; font-weight: 700;">🎁 Odabrani si!</h2>
-    </div>
+    function fireOutboundAndRedirect() {
+      const clickId = params.get('event_id') || genId('click');
+      fbq('trackCustom', 'OutboundClick', { content_name: 'Magzi Landing CTA' }, { eventID: clickId });
+      ttq.track('ClickButton');
+      sendCapi('OutboundClick', clickId);
+      window.setTimeout(() => {
+        window.location.href = '/api/redirect' + (window.location.search || '');
+      }, 120);
+    }
 
-    <div style="padding: 32px 24px; text-align: center;">
-      <p style="font-size: 18px; line-height: 1.45; color: #222; margin-bottom: 30px;">
-        Dobivaš <strong style="color: #00d4ff;">3 dana besplatnog pristupa</strong>
-      </p>
-
-      <button onclick="claimAccess()" 
-              style="background: #00d4ff; color: #000; border: none; padding: 17px 32px; font-size: 18px; font-weight: 700; border-radius: 9999px; width: 100%; cursor: pointer;">
-        Zatraži odmah →
-      </button>
-
-      <button onclick="closePopup()" 
-              style="margin-top: 20px; background: none; border: none; color: #777; font-size: 15px; cursor: pointer;">
-        Ne, hvala
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- === ONLYFANS POPUP - sigurna verzija preko /api/redirect === -->
-<div id="glow-popup" style="display: none; position: fixed; inset: 0; z-index: 99999; background: rgba(0,0,0,0.8); align-items: center; justify-content: center; font-family: system-ui, sans-serif;">
-  <div style="background: #ffffff; width: 100%; max-width: 400px; border-radius: 20px; overflow: hidden; box-shadow: 0 25px 70px rgba(0, 212, 255, 0.3);">
-    
-    <div style="background: linear-gradient(90deg, #00d4ff, #0099cc); padding: 20px; text-align: center; color: white;">
-      <h2 style="margin: 0; font-size: 28px; font-weight: 700;">🎁 Odabrani si!</h2>
-    </div>
-
-    <div style="padding: 32px 24px; text-align: center;">
-      <p style="font-size: 18px; line-height: 1.4; color: #222; margin-bottom: 28px;">
-        Dobivaš <strong style="color: #00d4ff;">3 dana besplatnog pristupa</strong>
-      </p>
-
-      <button onclick="claimAccess()" 
-              style="background: #00d4ff; color: #000; border: none; padding: 16px 32px; font-size: 18px; font-weight: 700; border-radius: 9999px; width: 100%; cursor: pointer;">
-        Zatraži odmah →
-      </button>
-
-      <button onclick="closePopup()" 
-              style="margin-top: 18px; background: none; border: none; color: #777; font-size: 15px;">
-        Ne, hvala
-      </button>
-    </div>
-  </div>
-</div>
-
-
-
-
-<script>
-// === SIGURNA VERZIJA - ide preko /api/redirect ===
-function showGlowPopup() {
-  const ua = navigator.userAgent.toLowerCase();
-  if (/facebookexternalhit|facebot/i.test(ua)) return;
-
-  document.getElementById('glow-popup').style.display = 'flex';
-}
-
-function claimAccess() {
-  const params = new URLSearchParams(window.location.search);
-  params.set('open_external', '1');
-
-  const query = params.toString();
-  window.location.href = query ? `/api/redirect?${query}` : '/api/redirect?open_external=1';
-}
-
-function closePopup() {
-  document.getElementById('glow-popup').style.display = 'none';
-}
-
-// Popup se pojavljuje nakon 2 sekunde
-window.addEventListener('load', () => {
-  setTimeout(showGlowPopup, 2000);
-});
-</script>
+    document.querySelectorAll('.cta-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        fireOutboundAndRedirect();
+      });
+    });
+  </script>
 </body>
 </html>
