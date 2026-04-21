@@ -33,7 +33,7 @@
         return instance;
       };
       ttq.load = function(id, opts) {
-        var src = "https://analytics.tiktok.com/i18n/pixel/events.js";
+        var src = 'https://analytics.tiktok.com/i18n/pixel/events.js';
         ttq._i = ttq._i || {};
         ttq._i[id] = [];
         ttq._i[id]._u = src;
@@ -41,14 +41,14 @@
         ttq._t[id] = +new Date();
         ttq._o = ttq._o || {};
         ttq._o[id] = opts || {};
-        var script = d.createElement("script");
-        script.type = "text/javascript";
+        var script = d.createElement('script');
+        script.type = 'text/javascript';
         script.async = !0;
-        script.src = src + "?sdkid=" + id + "&lib=" + t;
-        var first = d.getElementsByTagName("script")[0];
+        script.src = src + '?sdkid=' + id + '&lib=' + t;
+        var first = d.getElementsByTagName('script')[0];
         first.parentNode.insertBefore(script, first);
       };
-    }(window, document, "ttq");
+    }(window, document, 'ttq');
   </script>
   <style>
     :root {
@@ -64,7 +64,6 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -76,7 +75,6 @@
       -webkit-text-size-adjust: 100%;
     }
 
-    a { color: inherit; text-decoration: none; }
     button { font: inherit; }
 
     .site-nav {
@@ -134,12 +132,12 @@
     .cta-btn:hover {
       background: var(--accent);
       color: #000;
-      transform: translateY(-1px);
+      transform: scale(1.01);
     }
 
     .hero {
       position: relative;
-      height: 100dvh;
+      min-height: 100dvh;
       overflow: hidden;
       background: var(--bg);
     }
@@ -166,13 +164,11 @@
       z-index: 2;
       display: flex;
       align-items: flex-end;
-      min-height: 100%;
+      min-height: 100dvh;
       padding: 0 48px 90px;
     }
 
-    .hero-copy {
-      max-width: 520px;
-    }
+    .hero-copy { max-width: 520px; }
 
     .hero-label {
       margin-bottom: 18px;
@@ -206,16 +202,14 @@
       line-height: 1.6;
     }
 
+    .hero-actions { margin-top: 32px; }
+
     .hero-note,
     .final-note {
       margin-top: 12px;
       color: var(--text-muted);
       font-size: 11px;
       font-weight: 300;
-    }
-
-    .hero-actions {
-      margin-top: 32px;
     }
 
     .scroll-indicator {
@@ -231,25 +225,22 @@
 
     .photo-grid {
       display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 3px;
+      width: 100%;
       background: var(--bg);
     }
 
-    .photo-card {
-      overflow: hidden;
-      background: var(--bg-warm);
-    }
-
-    .photo-card img {
+    .photo-grid img {
       width: 100%;
-      aspect-ratio: 3 / 4;
+      aspect-ratio: 3/4;
       object-fit: cover;
       display: block;
-      transition: transform 0.4s ease, filter 0.4s ease;
+      transition: filter 0.4s ease, transform 0.4s ease;
     }
 
-    .photo-card:hover img {
-      filter: brightness(1.09);
+    .photo-grid img:hover {
+      filter: brightness(1.1);
       transform: scale(1.01);
     }
 
@@ -369,34 +360,31 @@
       50% { transform: translateY(8px); }
     }
 
-    @media (min-width: 600px) {
-      .photo-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (min-width: 1024px) {
-      .photo-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-
     @media (max-width: 1023px) {
       .quotes-grid { grid-template-columns: 1fr; }
     }
 
-    @media (max-width: 767px) {
+    @media (max-width: 768px) {
       .site-nav { padding: 0 16px; }
       .hero-inner { padding: 0 20px 64px; }
       .hero-title span { padding-left: 1rem; }
+      .photo-grid { grid-template-columns: repeat(2, 1fr); }
       .scroll-indicator { display: none; }
     }
 
     @media (max-width: 699px) {
       .stat-sep { display: none; }
     }
+
+    @media (max-width: 480px) {
+      .photo-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
   <header class='site-nav'>
     <div class='wordmark'>Magzi</div>
-    <button type='button' class='nav-btn' onclick='fireOutboundAndRedirect()'>Join Free</button>
+    <button type='button' class='nav-btn js-outbound'>Join Free</button>
   </header>
 
   <section class='hero'>
@@ -409,7 +397,7 @@
         <h1 class='hero-title'>Unfiltered.<span>Unapologetic.</span></h1>
         <p class='hero-text'>Iza kamera. Bez filtera. Samo Magzi.</p>
         <div class='hero-actions'>
-          <a href='/api/redirect' class='cta-btn'>PRISTUPI SADRŽAJU</a>
+          <button type='button' class='cta-btn js-outbound'>PRISTUPI SADRŽAJU</button>
           <div class='hero-note'>Besplatan 3-dnevni pristup · 18+</div>
         </div>
       </div>
@@ -417,13 +405,13 @@
     <div class='scroll-indicator' aria-hidden='true'>↓</div>
   </section>
 
-  <section class='photo-grid' aria-label='Magzi gallery'>
-    <div class='photo-card'><img src='/photo-1.jpg' alt='' loading='lazy'></div>
-    <div class='photo-card'><img src='/photo-2.jpg' alt='' loading='lazy'></div>
-    <div class='photo-card'><img src='/photo-3.jpg' alt='' loading='lazy'></div>
-    <div class='photo-card'><img src='/photo-4.jpg' alt='' loading='lazy'></div>
-    <div class='photo-card'><img src='/photo-5.jpg' alt='' loading='lazy'></div>
-  </section>
+  <div class='photo-grid' aria-label='Magzi lifestyle gallery'>
+    <img src='/photo-1.jpg' alt='Magzi lifestyle' loading='lazy'>
+    <img src='/photo-2.jpg' alt='Magzi lifestyle' loading='lazy'>
+    <img src='/photo-3.jpg' alt='Magzi lifestyle' loading='lazy'>
+    <img src='/photo-4.jpg' alt='Magzi lifestyle' loading='lazy'>
+    <img src='/photo-5.jpg' alt='Magzi lifestyle' loading='lazy'>
+  </div>
 
   <section class='numbers-bar'>
     <div class='numbers-inner'>
@@ -464,7 +452,7 @@
   <section class='final-cta'>
     <div class='final-line'></div>
     <h2>Svaki dan. Direktno. Samo za članove.</h2>
-    <a href='/api/redirect' class='cta-btn'>PRISTUPI SADRŽAJU</a>
+    <button type='button' class='cta-btn js-outbound'>PRISTUPI SADRŽAJU</button>
     <div class='final-note'>Mjesta su ograničena.</div>
   </section>
 
@@ -514,16 +502,19 @@
     sendCapi('ViewContent', viewContentId);
 
     function fireOutboundAndRedirect() {
+      const qs = window.location.search || '';
       const clickId = params.get('event_id') || genId('click');
-      fbq('trackCustom', 'OutboundClick', { content_name: 'Magzi Landing CTA' }, { eventID: clickId });
-      ttq.track('ClickButton');
+      if (typeof fbq !== 'undefined') {
+        fbq('trackCustom', 'OutboundClick', { content_name: 'Magzi CTA' }, { eventID: clickId });
+      }
+      if (typeof ttq !== 'undefined') {
+        ttq.track('ClickButton');
+      }
       sendCapi('OutboundClick', clickId);
-      window.setTimeout(() => {
-        window.location.href = '/api/redirect' + (window.location.search || '');
-      }, 120);
+      window.location.href = '/api/redirect' + qs;
     }
 
-    document.querySelectorAll('.cta-btn').forEach(btn => {
+    document.querySelectorAll('.cta-btn, .nav-btn, .js-outbound').forEach(btn => {
       btn.addEventListener('click', e => {
         e.preventDefault();
         fireOutboundAndRedirect();
