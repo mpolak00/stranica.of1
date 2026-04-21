@@ -101,7 +101,7 @@
       letter-spacing: 0.03em;
     }
 
-    .nav-btn,
+    .nav-cta,
     .cta-btn {
       display: inline-flex;
       align-items: center;
@@ -114,7 +114,7 @@
       transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
     }
 
-    .nav-btn {
+    .nav-cta {
       padding: 9px 22px;
       font-size: 0.8rem;
       font-weight: 500;
@@ -128,7 +128,7 @@
       text-transform: uppercase;
     }
 
-    .nav-btn:hover,
+    .nav-cta:hover,
     .cta-btn:hover {
       background: var(--accent);
       color: #000;
@@ -384,7 +384,7 @@
 <body>
   <header class='site-nav'>
     <div class='wordmark'>Magzi</div>
-    <button type='button' class='nav-btn js-outbound'>Join Free</button>
+    <button type='button' class='nav-cta'>Join Free</button>
   </header>
 
   <section class='hero'>
@@ -397,7 +397,7 @@
         <h1 class='hero-title'>Unfiltered.<span>Unapologetic.</span></h1>
         <p class='hero-text'>Iza kamera. Bez filtera. Samo Magzi.</p>
         <div class='hero-actions'>
-          <button type='button' class='cta-btn js-outbound'>PRISTUPI SADRŽAJU</button>
+          <button type='button' class='cta-btn'>PRISTUPI SADRŽAJU</button>
           <div class='hero-note'>Besplatan 3-dnevni pristup · 18+</div>
         </div>
       </div>
@@ -452,20 +452,13 @@
   <section class='final-cta'>
     <div class='final-line'></div>
     <h2>Svaki dan. Direktno. Samo za članove.</h2>
-    <button type='button' class='cta-btn js-outbound'>PRISTUPI SADRŽAJU</button>
+    <button type='button' class='cta-btn'>PRISTUPI SADRŽAJU</button>
     <div class='final-note'>Mjesta su ograničena.</div>
   </section>
 
   <footer class='site-footer'>© 2026 Magzi · Lifestyle & Content · 18+ · Sva prava pridržana</footer>
 
   <script>
-    const META_PIXEL_ID = 'YOUR_META_PIXEL_ID';
-    const TIKTOK_PIXEL_ID = 'YOUR_TIKTOK_PIXEL_ID';
-
-    fbq('init', META_PIXEL_ID);
-    ttq.load(TIKTOK_PIXEL_ID);
-    ttq.page();
-
     const params = new URLSearchParams(window.location.search);
     const tracking = {
       fbclid: params.get('fbclid') || '',
@@ -492,32 +485,36 @@
       }).catch(() => {});
     }
 
-    const pageViewId = genId('pageview');
-    fbq('track', 'PageView', {}, { eventID: pageViewId });
-    sendCapi('PageView', pageViewId);
-
-    const viewContentId = genId('viewcontent');
-    fbq('track', 'ViewContent', { content_name: 'Magzi Landing' }, { eventID: viewContentId });
-    ttq.track('ViewContent');
-    sendCapi('ViewContent', viewContentId);
-
-    function fireOutboundAndRedirect() {
-      const qs = window.location.search || '';
-      const clickId = params.get('event_id') || genId('click');
-      if (typeof fbq !== 'undefined') {
-        fbq('trackCustom', 'OutboundClick', { content_name: 'Magzi CTA' }, { eventID: clickId });
-      }
-      if (typeof ttq !== 'undefined') {
-        ttq.track('ClickButton');
-      }
-      sendCapi('OutboundClick', clickId);
-      window.location.href = '/api/redirect' + qs;
+    function loadPixelConfig() {
+      return fetch('/api/pixels', { cache: 'no-store' })
+        .then(response => response.ok ? response.json() : {})
+        .catch(() => ({}));
     }
 
-    document.querySelectorAll('.cta-btn, .nav-btn, .js-outbound').forEach(btn => {
-      btn.addEventListener('click', e => {
+    (function() {
+      const pageViewId = genId('pageview');
+      const viewContentId = genId('viewcontent');
+      sendCapi('PageView', pageViewId);
+      sendCapi('ViewContent', viewContentId);
+      loadPixelConfig().then(config => {
+        if (config.metaPixelId && typeof fbq !== 'undefined') {
+          fbq('init', config.metaPixelId);
+          fbq('track', 'PageView', {}, { eventID: pageViewId });
+          fbq('track', 'ViewContent', { content_name: 'Magzi Landing' }, { eventID: viewContentId });
+        }
+        if (config.tiktokPixelId && typeof ttq !== 'undefined') {
+          ttq.load(config.tiktokPixelId);
+          ttq.page();
+          ttq.track('ViewContent');
+        }
+      });
+    })();
+
+    document.querySelectorAll('.cta-btn, .nav-cta').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
         e.preventDefault();
-        fireOutboundAndRedirect();
+        var qs = window.location.search || '';
+        window.location.href = '/access' + qs;
       });
     });
   </script>
